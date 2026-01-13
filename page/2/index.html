@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>xuru的技术学习博客 - 记录学习之路</title><meta name="author" content="xuru"><meta name="copyright" content="xuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="专注技术学习，分享学习之路，博客内容配套Gitee源码">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xuru的技术学习博客">
+<meta property="og:url" content="https://xurucby.github.io/page/2/index.html">
+<meta property="og:site_name" content="xuru的技术学习博客">
+<meta property="og:description" content="专注技术学习，分享学习之路，博客内容配套Gitee源码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xurucby.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="xuru">
+<meta property="article:tag" content="Python, Django, MySQL, 技术博客, Gitee源码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xurucby.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xurucby.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'xuru的技术学习博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xuru的技术学习博客</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">xuru的技术学习博客</h1><div id="site_social_icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/%E5%AE%9A%E6%97%B6%E5%99%A8%E6%96%B9%E6%B3%95/" title="定时器方法">定时器方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:27:47.000Z" title="发表于 2026-01-13 11:27:47">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">定时器方法周期性定时器    作用：每隔一段时间就执行一次代码 12345678//开启定时器:var timerID = setInterval(function,interval);/*参数 : function : 需要执行的代码,可以传入函数名;或匿名函数 interval : 时间间隔,默认以毫秒为单位 1s = 1000ms返回值 : 返回定时器的ID,用于关闭定时器*/    关闭定时器 : 12//关闭指定id对应的定时器clearInterval(timerID); 一次性定时器    作用：等待多久之后执行一次代码 1234//开启超时调用:var timerId = setTimeout(function,timeout);//关闭超时调用:clearTimeout(timerId);  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/redis/" title="redis">redis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:26:48.000Z" title="发表于 2026-01-13 11:26:48">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis/">Redis</a></span></div><div class="content">Redis-noteRedis介绍  特点及优点  123451、开源的，使用C编写，基于内存且支持持久化2、高性能的Key-Value的NoSQL数据库3、支持数据类型丰富，字符串strings，散列hashes，列表lists，集合sets，有序集合sorted sets 等等4、支持多种编程语言（C C++ Python Java PHP ... ）5、单进程单线程   与其他数据库对比  12341、MySQL : 关系型数据库，表格，基于磁盘，慢2、MongoDB：键值对文档型数据库，值为类似JSON文档，数据结构相对单一3、Redis的诞生是为了解决什么问题？？   # 解决硬盘IO带来的性能瓶颈   应用场景  123451，缓存2，并发计数3，排行榜4，生产者消费者模型...   redis版本  121、最新版本：5.02、常用版本：2.4、2.6、2.8、3.0(里程碑)、3.2、3.4、4.0(教学环境版本)、5.0   Redis附加功能  123456789101、持久化  将内存中数据保存到磁盘中，保证数据安全，方便进行数据备份和恢复2、过期键功能  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/JavaScript/" title="JavaScript">JavaScript</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:46:23.000Z" title="发表于 2026-01-13 00:46:23">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">一、 JavaScript 基础一、 JavaScript 概述1. 什么是JavaScript1) JS 介绍简称JS，是一种浏览器解释型语言,嵌套在HTML文件中交给浏览器解释执行。主要用来实现网页的动态效果，用户交互及前后端的数据传输等。 2) JS 组成 核心语法 -ECMAScript 规范了JS的基本语法 浏览器对象模型 -BOM  Browser Object Model，提供了一系列操作浏览器的方法 文档对象模型 -DOM  Document Object Model ，提供了一系列操作的文档的方法  2. 使用方式 元素绑定事件 事件 ：指用户的行为（单击，双击等）或元素的状态（输入框的焦点状态等） 事件处理：元素监听某种事件并在事件发生后自动执行事件处理函数。 常用事件：onclick (单击事件)  语法 ：将事件名称以标签属性的方式绑定到元素上，自定义事件处理。   12&lt;!--实现点击按钮在控制台输出--&gt;&lt;button onclick=&quot;console.log(&#x27;Hello World&#x27;);&quot;&...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/CSS-%E5%B8%83%E5%B1%80%E6%96%B9%E5%BC%8F/" title="CSS-布局方式">CSS-布局方式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:45:48.000Z" title="发表于 2026-01-13 00:45:48">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CSS/">CSS</a></span></div><div class="content">布局方式1. 标准流&#x2F;静态流默认布局方式,按照代码书写顺序及标签类型从上到下,从左到右依次显示 2. 浮动布局主要用于设置块元素的水平排列 1）属性float  2）取值可取left或right，设置元素向左浮动或向右浮动 1float:left/right; 3）特点 元素设置浮动会从原始位置脱流,向左或向右依次停靠在其他元素边缘,在文档中不再占位 元素设置浮动,就具有块元素的特征,可以手动调整宽高 “文字环绕”:浮动元素遮挡正常元素的位置,无法遮挡正常内容的显示,内容围绕在浮动元素周围显示  4）常见问题子元素全部设置浮动,导致父元素高度为0,影响父元素背景色和背景图片展示,影响页面布局 5）解决 对于内容固定的元素,如果子元素都浮动,可以给父元素固定高度(例:导航栏) 在父元素的末尾添加空的块元素。设置clear:both;清除浮动 为父元素设置overflow:hidden;解决高度为0  3. 定位布局结合偏移属性调整元素的显示位置 1）属性position 2） 取值可取relative（相对定位）&#x2F;absolute（绝对定位）&#x2F;fixe...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/CSS-%E7%9B%92%E6%A8%A1%E5%9E%8B/" title="CSS-盒模型">CSS-盒模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:45:35.000Z" title="发表于 2026-01-13 00:45:35">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CSS/">CSS</a></span></div><div class="content">CSS 盒模型1. 内容尺寸 一般情况下，为元素设置width&#x2F;height，指定的是内容框的大小  内容溢出：内容超出元素的尺寸范围，称为溢出。默认情况下溢出部分仍然可见，可以使用overflow调整溢出部分的显示,取值如下：    取值 作用    visible 默认值，溢出部分可见   hidden 溢出部分隐藏   scroll 强制在水平和垂直方向添加滚动条   auto 自动在溢出方向添加可用滚动条     2. 边框1. 边框实现语法： 1border:width style color; 边框样式为必填项，分为：    样式取值 含义    solid 实线边框   dotted 点线边框   dashed 虚线边框   double 双线边框   2. 单边框设置分别设置某一方向的边框，取值：width style color;    属性 作用    border-top 设置上边框   border-bottom 设置下边框   border-left 设置左边框   border-right 设置右边框   3. 网页三角标制作 元素设置宽高为...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/CSS-%E5%9F%BA%E7%A1%80/" title="CSS-基础">CSS-基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:45:30.000Z" title="发表于 2026-01-13 00:45:30">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CSS/">CSS</a></span></div><div class="content">CSS 基础使用一、CSS介绍 CSS全称为： Cascading Style Sheets ，意为层叠样式表 ，与HTML相辅相成，实现网页的排版布局与样式美化 二、CSS使用方式1. 行内样式&#x2F;内联样式  借助于style标签属性，为当前的元素添加样式声明  1&lt;标签名 style=&quot;样式声明&quot;&gt;  CSS样式声明 : 由CSS属性和值组成  例：  1style=&quot;属性:值;属性:值;&quot;  常用CSS属性 :  设置文本颜色 color:red; 设置背景颜色 background-color:green; 设置字体大小 font-size:32px;  2. 内嵌样式  借助于style标签，在HTML文档中嵌入CSS样式代码，可以实现CSS样式与HTML标签之间的分离。同时需借助于CSS选择器到HTML 中匹配元素并应用样式  示例:  123456&lt;style&gt;   	选择器&#123;   	 	属性:值;    		属性:值;   	&#125;&lt;/style&gt;  选择器 : 通...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/HTML/" title="HTML">HTML</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:45:20.000Z" title="发表于 2026-01-13 00:45:20">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/HTML/">HTML</a></span></div><div class="content">一、Web前端介绍1.  什么是网页网页是基于浏览器的应用程序，是数据展示的载体. 2.  网页的组成 浏览器 代替用户向服务器发请求 接收并解析数据展示给用户   服务器 存储数据 处理并响应请求   协议 规范数据在传输过程中的打包方式    3.  开发前的准备 运行环境：浏览器，设置chrome为默认浏览器，作为网页文件的运行环境。 调试工具：浏览器自带的调试工具，使用快捷键”F12”或右键”检查”打开。 开发工具：不限，选用个人习惯的即可（VSCode、EditPlus、PyCharm等）。  二、 HTML语法介绍1.  HTML介绍超文本标记语言（HyperText Markup Language）浏览器能够识别和解析的语言，通过标签的形式构建页面结构和填充内容 2. 标签标签也称为标记或元素，用于在网页中标记内容  语法：标签使用&lt; &gt;为标志，在&lt; &gt;内部写标签名和标签属性  注释语法：   1&lt;!-- 此处为注释 --&gt;   标签名不区分大小写，推荐小写表示   分类：  双标签：成对出现，包含开始标签和结束标签。例： 123...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day08/" title="Django学习-day08">Django学习-day08</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:33:05.000Z" title="发表于 2026-01-13 00:33:05">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis/">Redis</a></span></div><div class="content">Redis-noteRedis介绍  特点及优点  123451、开源的，使用C编写，基于内存且支持持久化2、高性能的Key-Value的NoSQL数据库3、支持数据类型丰富，字符串strings，散列hashes，列表lists，集合sets，有序集合sorted sets 等等4、支持多种编程语言（C C++ Python Java PHP ... ）5、单进程单线程   与其他数据库对比  12341、MySQL : 关系型数据库，表格，基于磁盘，慢2、MongoDB：键值对文档型数据库，值为类似JSON文档，数据结构相对单一3、Redis的诞生是为了解决什么问题？？   # 解决硬盘IO带来的性能瓶颈   应用场景  123451，缓存2，并发计数3，排行榜4，生产者消费者模型...   redis版本  121、最新版本：5.02、常用版本：2.4、2.6、2.8、3.0(里程碑)、3.2、3.4、4.0(教学环境版本)、5.0   Redis附加功能  123456789101、持久化  将内存中数据保存到磁盘中，保证数据安全，方便进行数据备份和恢复2、过期键功能  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day07/" title="Django学习-day07">Django学习-day07</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:33:03.000Z" title="发表于 2026-01-13 00:33:03">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Django/">Django</a></span></div><div class="content">文件上传 文件上传必须为POST提交方式  表单&lt;form&gt;中文件上传时必须有带有enctype=&quot;multipart/form-data&quot; 时才会包含文件内容数据。  表单中用&lt;input type=&quot;file&quot; name=&quot;xxx&quot;&gt;标签上传文件  名字xxx对应request.FILES[&#39;xxx&#39;] 对应的内存缓冲文件流对象。可通能过request.FILES[&#39;xxx&#39;] 返回的对象获取上传文件数据 file=request.FILES[&#39;xxx&#39;] file 绑定文件流对象，可以通过文件流对象的如下信息获取文件数据file.name 文件名file.file 文件的字节流数据   上传文件的表单书写方式 1234567891011121314&lt;!-- file: index/templates/index/upload.html --&gt;&lt;html&gt;&lt;head&gt;    &lt;meta charset=&...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day06/" title="Django学习-day06">Django学习-day06</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:33:00.000Z" title="发表于 2026-01-13 00:33:00">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Django/">Django</a></span></div><div class="content">缓存什么是缓存？缓存是一类可以更快的读取数据的介质统称，也指其它可以加快数据读取的存储方式。一般用来存储临时数据，常用介质的是读取速度很快的内存 为什么使用缓存？视图渲染有一定成本，对于低频变动的页面可以考虑使用缓存技术，减少实际渲染次数 案例分析 123456from django.shortcuts import renderdef index(request):    # 时间复杂度极高的渲染    book_list = Book.objects.all()  #-&gt; 此处假设耗时2s    return render(request, &#x27;index.html&#x27;, locals())  优化思想 12345678given a URL, try finding that page in the cacheif the page is in the cache:    return the cached pageelse:    generate the page    save the generated page in the cache (f...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xuru</div><div class="author-info-description">专注技术学习，分享学习之路，博客内容配套Gitee源码</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CSS/"><span class="card-category-list-name">CSS</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Django/"><span class="card-category-list-name">Django</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HTML/"><span class="card-category-list-name">HTML</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaScript/"><span class="card-category-list-name">JavaScript</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Redis/"><span class="card-category-list-name">Redis</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Django/" style="font-size: 1.5em; color: #99a9bf">Django</a> <a href="/tags/HTML/" style="font-size: 1.1em; color: #999">HTML</a> <a href="/tags/python/" style="font-size: 1.4em; color: #99a5b6">python</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a> <a href="/tags/Redis/" style="font-size: 1.2em; color: #999da3">Redis</a> <a href="/tags/JavaScript/" style="font-size: 1.3em; color: #99a1ac">JavaScript</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/CSS/" style="font-size: 1.3em; color: #99a1ac">CSS</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">26</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-13T06:54:56.779Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By xuru</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

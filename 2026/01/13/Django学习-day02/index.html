@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Django学习-day02 | xuru的技术学习博客</title><meta name="author" content="xuru"><meta name="copyright" content="xuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文详细讲解Django基础和模板配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django学习-day02">
+<meta property="og:url" content="https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/index.html">
+<meta property="og:site_name" content="xuru的技术学习博客">
+<meta property="og:description" content="本文详细讲解Django基础和模板配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xurucby.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-01-12T16:30:49.000Z">
+<meta property="article:modified_time" content="2026-01-12T16:56:37.221Z">
+<meta property="article:author" content="xuru">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xurucby.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Django学习-day02",
+  "url": "https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/",
+  "image": "https://xurucby.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-01-12T16:30:49.000Z",
+  "dateModified": "2026-01-12T16:56:37.221Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "xuru",
+      "url": "https://xurucby.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Django学习-day02',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xuru的技术学习博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Django学习-day02</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Django学习-day02</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-12T16:30:49.000Z" title="发表于 2026-01-13 00:30:49">2026-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-12T16:56:37.221Z" title="更新于 2026-01-13 00:56:37">2026-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Django/">Django</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="Django的框架设计模式"><a href="#Django的框架设计模式" class="headerlink" title="Django的框架设计模式"></a>Django的框架设计模式</h2><ul>
+<li>MVC 设计模式<ul>
+<li>MVC 代表 Model-View-Controller（模型-视图-控制器） 模式。</li>
+<li>作用: 降低模块间的耦合度(解耦)</li>
+<li>MVC<ul>
+<li>M 模型层(Model), 主要用于对数据库层的封装</li>
+<li>V 视图层(View), 用于向用户展示结果</li>
+<li>C 控制(Controller ，用于处理请求、获取数据、返回结果(重要)</li>
+</ul>
+</li>
+<li>MVC模式如图:<br>  <img src="/./images/mvc.png"></li>
+</ul>
+</li>
+<li>MTV 模式<br>  MTV 代表 Model-Template-View（模型-模板-视图） 模式。这种模式用于应用程序的分层开发<ul>
+<li>作用: <ul>
+<li>降低模块间的耦合度(解耦)</li>
+</ul>
+</li>
+<li>MTV <ul>
+<li>M – 模型层(Model)  负责与数据库交互</li>
+<li>T – 模板层(Template)  负责呈现内容到浏览器</li>
+<li>V – 视图层(View)  是核心，负责接收请求、获取数据、返回结果</li>
+</ul>
+</li>
+<li>MTV模式如图:<br>  <img src="/./images/mtv.png"></li>
+</ul>
+</li>
+</ul>
+<h2 id="模板-Templates"><a href="#模板-Templates" class="headerlink" title="模板 Templates"></a>模板 Templates</h2><ul>
+<li><p>什么是模板</p>
+<ol>
+<li>模板是可以根据字典数据动态变化的html网页</li>
+<li>模板可以根据视图中传递的字典数据动态生成相应的HTML网页。</li>
+</ol>
+</li>
+<li><p>模板的配置</p>
+<ul>
+<li>创建模板文件夹<code>&lt;项目名&gt;/templates</code></li>
+<li>在 settings.py 中 TEMPLATES 配置项<ol>
+<li>BACKEND : 指定模板的引擎</li>
+<li>DIRS : 模板的搜索目录(可以是一个或多个)</li>
+<li>APP_DIRS : 是否要在应用中的 <code>templates</code> 文件夹中搜索模板文件</li>
+<li>OPTIONS : 有关模板的选项</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>默认的模块文件夹<code>templates</code></p>
+</li>
+<li><p>修改settings.py文件，设置TEMPLATES的DIRS值为<code>&#39;DIRS&#39;: [os.path.join(BASE_DIR, &#39;templates&#39;)],</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file: settings.py</span></span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,</span><br><span class="line">        <span class="comment"># &#x27;DIRS&#x27;: [],</span></span><br><span class="line">        <span class="string">&#x27;DIRS&#x27;</span>: [os.path.join(BASE_DIR, <span class="string">&#x27;templates&#x27;</span>)],  <span class="comment"># 添加模板路径</span></span><br><span class="line">        <span class="string">&#x27;APP_DIRS&#x27;</span>: <span class="literal">True</span>,  <span class="comment"># 是否索引各app里的templates目录</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li>模板的加载方式<ol>
+<li>通过 loader 获取模板,通过HttpResponse进行响应 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> loader</span><br><span class="line"><span class="comment"># 1.通过loader加载模板</span></span><br><span class="line">t = loader.get_template(<span class="string">&quot;模板文件名&quot;</span>)</span><br><span class="line"><span class="comment"># 2.将t转换成 HTML 字符串</span></span><br><span class="line">html = t.render(字典数据)</span><br><span class="line"><span class="comment"># 3.用响应对象将转换的字符串内容返回给浏览器</span></span><br><span class="line"><span class="keyword">return</span> HttpResponse(html)</span><br></pre></td></tr></table></figure></li>
+<li>使用 render() 直接加载并响应模板 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">return</span> render(request,<span class="string">&#x27;模板文件名&#x27;</span>, 字典数据)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h3 id="Django-模板语言"><a href="#Django-模板语言" class="headerlink" title="Django 模板语言"></a>Django 模板语言</h3><h4 id="模板的传参"><a href="#模板的传参" class="headerlink" title="模板的传参"></a>模板的传参</h4><ul>
+<li>模板传参是指把数据形成字典，传参给模板，为模板渲染提供数据</li>
+</ul>
+<ol>
+<li>使用 loader 加载模板 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = loader.get_template(<span class="string">&#x27;xxx.html&#x27;</span>)</span><br><span class="line">html = t.render(字典数据)</span><br><span class="line"><span class="keyword">return</span> HttpResponse(html)</span><br></pre></td></tr></table></figure></li>
+<li>使用render加载模板 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> render(request,<span class="string">&#x27;xxx.html&#x27;</span>,字典数据)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="模板的变量"><a href="#模板的变量" class="headerlink" title="模板的变量"></a>模板的变量</h4><ol>
+<li>在模板中使用变量语法<ul>
+<li><p><code>&#123;&#123; 变量名 &#125;&#125;</code></p>
+</li>
+<li><p><code>&#123;&#123; 变量名.index &#125;&#125;</code></p>
+</li>
+<li><p><code>&#123;&#123; 变量名.key&#125;&#125;</code></p>
+</li>
+<li><p><code>&#123;&#123; 对象.方法 &#125;&#125;</code></p>
+</li>
+<li><p><code>&#123;&#123; 函数名 &#125;&#125;</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<p>2.视图函数中必须将变量封装到字典中才允许传递到模板上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">xxx_view</span>(<span class="params">request</span>)</span><br><span class="line">    dic = &#123;</span><br><span class="line">        <span class="string">&quot;变量1&quot;</span>:<span class="string">&quot;值1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;变量2&quot;</span>:<span class="string">&quot;值2&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;xxx.html&#x27;</span>, dic)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如果变量过多，可以使用 locals() 将局部变量自动生成字典</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">xxx_view</span>(<span class="params">request</span>)</span><br><span class="line">	变量<span class="number">1</span> = 值<span class="number">1</span></span><br><span class="line">    变量<span class="number">2</span> = 值<span class="number">2</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;xxx.html&#x27;</span>, <span class="built_in">locals</span>())</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h4><p>定义：XSS全称是Cross Site Scripting即跨站脚本</p>
+<p>原理：将恶意HTML&#x2F;JavaScript代码注入到受害用户浏览的网页上，从而达到攻击目的</p>
+<p>危害：盗取用户信息，破坏网站正常运行等</p>
+<p>分类：</p>
+<h5 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h5><p>​    定义：发出请求时，XSS代码出现在URL中，作为输入提交到服务器端，服务器端解析后响应，XSS代码随响应内容一起传回给浏览器，最后浏览器解析执行XSS代码。这个过程像一次反射，故叫反射型XSS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">样例：</span><br><span class="line">以查询字符串形式提交 xss代码</span><br><span class="line">http://127.0.0.1:8000/test_html?t=&lt;script&gt;alert(11)&lt;/script&gt;</span><br><span class="line">后端接到查询字符串的值后，显示在页面中</span><br></pre></td></tr></table></figure>
+
+<h5 id="存储型xss"><a href="#存储型xss" class="headerlink" title="存储型xss"></a>存储型xss</h5><p>​	定义：提交的XSS代码会存储在服务器端（数据库，内存，文件系统等），其他用户请求目标页面时即被攻击</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">样例：</span><br><span class="line">    博客发表文章时，提交XSS代码，服务器存储代码后，其他用户访问该文章时，被XSS攻击</span><br></pre></td></tr></table></figure>
+
+<h5 id="DOM-xss"><a href="#DOM-xss" class="headerlink" title="DOM xss"></a>DOM xss</h5><p>​	定义：DOM XSS的代码无需跟服务器交互，在前端直接触发攻击</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">样例：</span><br><span class="line">地址栏提交#内容，例如-<span class="attr">http</span>:<span class="comment">//127.0.0.1:8000/test_html#javascript:alert(11)</span></span><br><span class="line"></span><br><span class="line">页面中添加<span class="attr">JS</span>:</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">var</span> hash = location.<span class="property">hash</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">if</span>(hash)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">var</span> url = hash.<span class="title function_">substring</span>(<span class="number">1</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        location.<span class="property">href</span> = url;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="模板的标签"><a href="#模板的标签" class="headerlink" title="模板的标签"></a>模板的标签</h4><p>文档可参见：<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#built-in-tag-reference">https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#built-in-tag-reference</a></p>
+<ol>
+<li><p>作用</p>
+<ul>
+<li>将一些服务器端的功能嵌入到模板中</li>
+</ul>
+</li>
+<li><p>标签语法</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% 标签 %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% 结束标签 %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if 标签</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if 条件表达式1 %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% elif 条件表达式2 %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% elif 条件表达式3 %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if 标签里的布尔运算符</p>
+<ul>
+<li>if 条件表达式里可以用的运算符 &#x3D;&#x3D;, !&#x3D;, &lt;, &gt;, &lt;&#x3D;, &gt;&#x3D;, in, not in, is, is not, not、and、or</li>
+<li>在if标记中使用实际括号是无效的语法。 如果您需要它们指示优先级，则应使用嵌套的if标记。</li>
+</ul>
+<p> 练习</p>
+<ul>
+<li><p>写一个简单的计算器页面，能够在服务端进行简单加减乘除计算</p>
+<form action='/mycal' method='POST'>
+    <input type='text' name="x" value="1">
+    <select>
+        <option value="add"> +加 </option>
+        <option value="sub"> -减 </option>
+        <option value="mul"> *乘 </option>
+        <option value="div"> /除 </option>
+    </select>
+    <input type='text' name="y" value="2"> = <span>3</span>
+    <div>
+        <input type="submit" value='开始计算'>
+    <div>
+</form>
+</li>
+<li><p>参考代码</p>
+</li>
+</ul>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&#x27;/mycal&#x27;</span> <span class="attr">method</span>=<span class="string">&#x27;POST&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&quot;x&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&#x27;op&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;add&quot;</span>&gt;</span> +加 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;sub&quot;</span>&gt;</span> -减 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;mul&quot;</span>&gt;</span> *乘 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;div&quot;</span>&gt;</span> /除 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;text&#x27;</span> <span class="attr">name</span>=<span class="string">&quot;y&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span> = <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&#x27;开始计算&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for 标签</p>
+<ol>
+<li>语法 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for 变量 in 可迭代对象 %&#125;</span><br><span class="line">    ... 循环语句</span><br><span class="line">&#123;% empty %&#125;</span><br><span class="line">    ... 可迭代对象无数据时填充的语句</span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure></li>
+<li>内置变量 - forloop<table>
+<thead>
+<tr>
+<th align="center">变量</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">forloop.counter</td>
+<td align="center">循环的当前迭代（从1开始索引）</td>
+</tr>
+<tr>
+<td align="center">forloop.counter0</td>
+<td align="center">循环的当前迭代（从0开始索引）</td>
+</tr>
+<tr>
+<td align="center">forloop.revcounter</td>
+<td align="center">counter值得倒序</td>
+</tr>
+<tr>
+<td align="center">forloop.revcounter0</td>
+<td align="center">counter0值的倒序</td>
+</tr>
+<tr>
+<td align="center">forloop.first</td>
+<td align="center">如果这是第一次通过循环，则为真</td>
+</tr>
+<tr>
+<td align="center">forloop.last</td>
+<td align="center">如果这是最后一次循环，则为真</td>
+</tr>
+<tr>
+<td align="center">forloop.parentloop</td>
+<td align="center">当嵌套循环，parentloop 表示外层循环</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h4><ol>
+<li><p>作用</p>
+<ul>
+<li>在变量输出时对变量的值进行处理</li>
+<li>可以通过使用 过滤器来改变变量的输出显示。</li>
+</ul>
+</li>
+<li><p>语法</p>
+<ul>
+<li>变量|过滤器1:参数值1|过滤器2:参数值2</li>
+</ul>
+</li>
+<li><p>常用的过滤器</p>
+<table>
+<thead>
+<tr>
+<th align="center">过滤器</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">lower</td>
+<td align="center">将字符串转换为全部小写。</td>
+</tr>
+<tr>
+<td align="center">upper</td>
+<td align="center">将字符串转换为大写形式</td>
+</tr>
+<tr>
+<td align="center">safe</td>
+<td align="center">默认不对变量内的字符串进行html转义</td>
+</tr>
+<tr>
+<td align="center">add: “n”</td>
+<td align="center">将value的值增加 n</td>
+</tr>
+<tr>
+<td align="center">truncatechars:’n’</td>
+<td align="center">如果字符串字符多于指定的字符数量，那么会被截断。 截断的字符串将以可翻译的省略号序列（“…”）结尾。</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>文档参见:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#built-in-filter-reference">https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#built-in-filter-reference</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="模板的继承"><a href="#模板的继承" class="headerlink" title="模板的继承"></a>模板的继承</h3><ul>
+<li><p>模板继承可以使父模板的内容重用,子模板直接继承父模板的全部内容并可以覆盖父模板中相应的块</p>
+</li>
+<li><p>定义父模板中的块 <code>block</code>标签</p>
+<ul>
+<li>标识出哪些在子模块中是允许被修改的</li>
+<li>block标签：在父模板中定义，可以在子模板中覆盖  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block block_name %&#125;</span><br><span class="line">定义模板块，此模板块可以被子模板重新定义的同名块覆盖</span><br><span class="line">&#123;% endblock block_name %&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>继承模板 <code>extends</code> 标签(写在模板文件的第一行)</p>
+<ul>
+<li>子模板继承语法标签<ul>
+<li><code>&#123;% extends '父模板名称' %&#125;</code></li>
+<li>如:<ul>
+<li><code>&#123;% extends 'base.html' %&#125;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子模板 重写父模板中的内容块  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block block_name %&#125;</span><br><span class="line">子模板块用来覆盖父模板中 block_name 块的内容</span><br><span class="line">&#123;% endblock block_name %&#125;</span><br></pre></td></tr></table></figure></li>
+<li>重写的覆盖规则<ul>
+<li>不重写,将按照父模板的效果显示</li>
+<li>重写,则按照重写效果显示</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>模板继承时,服务器端的动态内容无法继承</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>参考文档</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/2.2/ref/templates/language/#for-template-blocks">https://docs.djangoproject.com/en/2.2/ref/templates/language/#for-template-blocks</a></p>
+</li>
+<li><p>模板的继承示例:</p>
+<ul>
+<li><img src="/./images/template_inherit.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="url-反向解析"><a href="#url-反向解析" class="headerlink" title="url 反向解析"></a>url 反向解析</h3><ul>
+<li><p>url 反向解析是指在视图或模板中，用path定义的名称来查找或计算出相应的路由</p>
+</li>
+<li><p>path 函数的语法</p>
+<ul>
+<li>path (route, views, name&#x3D;”别名”)</li>
+<li>例如:<ul>
+<li>path(‘page’, views.page_view, name&#x3D;”page_url”)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>path() 的<code>name</code>关键字参数</p>
+<ul>
+<li><p>作用:</p>
+<ul>
+<li>根据path中的<code>name=</code>关键字传参给 url确定了个唯一确定的名字，在模板或视图中，可以通过这个名字反向推断出此url信息</li>
+</ul>
+</li>
+<li><p>在模板中 -&gt;通过url标签实现地址的反向解析</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% url <span class="string">&#x27;别名&#x27;</span> %&#125;</span><br><span class="line">&#123;% url <span class="string">&#x27;别名&#x27;</span> <span class="string">&#x27;参数值1&#x27;</span> <span class="string">&#x27;参数值2&#x27;</span> %&#125;</span><br><span class="line">ex:</span><br><span class="line">&#123;% url <span class="string">&#x27;pagen&#x27;</span> <span class="string">&#x27;400&#x27;</span> %&#125;</span><br><span class="line">&#123;% url <span class="string">&#x27;person&#x27;</span> age=<span class="string">&#x27;18&#x27;</span> name=<span class="string">&#x27;gxn&#x27;</span> %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在视图函数中 -&gt;可调用 django中的 reverse 方法进行反向解析</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line">reverse(<span class="string">&#x27;别名&#x27;</span>, args=[], kwargs=&#123;&#125;)</span><br><span class="line">ex:</span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">&#x27;pagen&#x27;</span>,args=[<span class="number">300</span>]))</span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">&#x27;person&#x27;</span>,kwargs=&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;xixi&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:<span class="number">18</span>&#125;))</span><br></pre></td></tr></table></figure>
+
+<p> <strong>同名找最合适的【参数一致的】；参数一致时，找最后一个；</strong></p>
+</li>
+</ul>
+</li>
+<li><p>练习:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">写一个有四个自定义页面的网站，对应路由:</span><br><span class="line">/       主页</span><br><span class="line">/page1   页面1</span><br><span class="line">/page2   页面2</span><br><span class="line">/page3   页面3</span><br><span class="line">功能: 主页加 三个页面的连接分别跳转到一个 页面，三个页面每个页面加入一个链接用于返回主页</span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xurucby.github.io">xuru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/">https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xurucby.github.io" target="_blank">xuru的技术学习博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Django/">Django</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/" title="Django学习-day03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Django学习-day03</div></div><div class="info-2"><div class="info-item-1">静态文件 什么是静态文件 不能与服务器端做动态交互的文件都是静态文件 如:图片,css,js,音频,视频,html文件(部分)   静态文件配置 在 settings.py 中配置一下两项内容:   配置静态文件的访问路径  通过哪个url地址找静态文件 STATIC_URL &#x3D; ‘&#x2F;static&#x2F;‘ 说明: 指定访问静态文件时是需要通过 &#x2F;static&#x2F;xxx或 127.0.0.1:8000&#x2F;static&#x2F;xxx xxx 表示具体的静态资源位置     配置静态文件的存储路径 STATICFILES_DIRS  STATICFILES_DIRS保存的是静态文件在服务器端的存储位置   示例:  1234# file: setting.pySTATICFILES_DIRS = (    os.path.join(BASE_DIR, &quot;static&quot;),)   访问静态文件 使用静态文件的访问路径进行访问  访问路径: STATIC_URL &#x3D; ‘&#x2F;static&#x2F;...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day01/" title="Django学习-day01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Django学习-day01</div></div><div class="info-2"><div class="info-item-1">Django框架的介绍起源&amp;现状 2005年发布,采用Python语言编写的开源web框架  早期的时候Django主做新闻和内容管理的  一个重量级的 Python Web框架，Django 配备了常用的大部分组件  基本配置 路由系统 原生HTML模板系统 视图 view Model模型,数据库连接和ORM数据库管理 中间件 Cookie &amp; Seesion 分页 数据库后台管理系统admin   Django的用途  网站后端开发 微信公众号、微信小程序等后台开发 基于HTTP&#x2F;HTTPS协议的后台服务器开发 在线语音&#x2F;图像识别服务器 在线第三方身份验证服务器等     Django的版本  最新版本:3.0.x 当前教学版本:2.2.12   Django的官网  官方网址: http://www.djangoproject.com 中文文档(第三方): https://yiyibooks.cn/      Django的安装 查看已安装的版本   123&gt;&gt;&gt; import django&gt;&gt;&gt; pr...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day01/" title="Django学习-day01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day01</div></div><div class="info-2"><div class="info-item-1">Django框架的介绍起源&amp;现状 2005年发布,采用Python语言编写的开源web框架  早期的时候Django主做新闻和内容管理的  一个重量级的 Python Web框架，Django 配备了常用的大部分组件  基本配置 路由系统 原生HTML模板系统 视图 view Model模型,数据库连接和ORM数据库管理 中间件 Cookie &amp; Seesion 分页 数据库后台管理系统admin   Django的用途  网站后端开发 微信公众号、微信小程序等后台开发 基于HTTP&#x2F;HTTPS协议的后台服务器开发 在线语音&#x2F;图像识别服务器 在线第三方身份验证服务器等     Django的版本  最新版本:3.0.x 当前教学版本:2.2.12   Django的官网  官方网址: http://www.djangoproject.com 中文文档(第三方): https://yiyibooks.cn/      Django的安装 查看已安装的版本   123&gt;&gt;&gt; import django&gt;&gt;&gt; pr...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day07/" title="Django学习-day07"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day07</div></div><div class="info-2"><div class="info-item-1">文件上传 文件上传必须为POST提交方式  表单&lt;form&gt;中文件上传时必须有带有enctype=&quot;multipart/form-data&quot; 时才会包含文件内容数据。  表单中用&lt;input type=&quot;file&quot; name=&quot;xxx&quot;&gt;标签上传文件  名字xxx对应request.FILES[&#39;xxx&#39;] 对应的内存缓冲文件流对象。可通能过request.FILES[&#39;xxx&#39;] 返回的对象获取上传文件数据 file=request.FILES[&#39;xxx&#39;] file 绑定文件流对象，可以通过文件流对象的如下信息获取文件数据file.name 文件名file.file 文件的字节流数据   上传文件的表单书写方式 1234567891011121314&lt;!-- file: index/templates/index/upload.html --&gt;&lt;html&gt;&lt;head&gt;    &lt;meta charset=&...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day06/" title="Django学习-day06"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day06</div></div><div class="info-2"><div class="info-item-1">缓存什么是缓存？缓存是一类可以更快的读取数据的介质统称，也指其它可以加快数据读取的存储方式。一般用来存储临时数据，常用介质的是读取速度很快的内存 为什么使用缓存？视图渲染有一定成本，对于低频变动的页面可以考虑使用缓存技术，减少实际渲染次数 案例分析 123456from django.shortcuts import renderdef index(request):    # 时间复杂度极高的渲染    book_list = Book.objects.all()  #-&gt; 此处假设耗时2s    return render(request, &#x27;index.html&#x27;, locals())  优化思想 12345678given a URL, try finding that page in the cacheif the page is in the cache:    return the cached pageelse:    generate the page    save the generated page in the cache (f...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day04/" title="Django学习-day04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day04</div></div><div class="info-2"><div class="info-item-1">查询数据 数据库的查询需要使用管理器对象进行  通过 MyModel.objects 管理器方法调用查询接口   方法 说明    all() 查询全部记录,返回QuerySet查询对象   get() 查询符合条件的单一记录   filter() 查询符合条件的多条记录   exclude() 查询符合条件之外的全部记录   …       all()方法  方法: all() 用法: MyModel.objects.all() 作用: 查询MyModel实体中所有的数据 等同于 select * from tabel     返回值: QuerySet容器对象,内部存放 MyModel 实例 示例:  1234from bookstore.models import Bookbooks = Book.objects.all()for book in books:    print(&quot;书名&quot;, book.title, &#x27;出版社:&#x27;, book.pub)   在模型类中定义 def __str__(self):  方法可以自定义默认的字符串...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/" title="Django学习-day03"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day03</div></div><div class="info-2"><div class="info-item-1">静态文件 什么是静态文件 不能与服务器端做动态交互的文件都是静态文件 如:图片,css,js,音频,视频,html文件(部分)   静态文件配置 在 settings.py 中配置一下两项内容:   配置静态文件的访问路径  通过哪个url地址找静态文件 STATIC_URL &#x3D; ‘&#x2F;static&#x2F;‘ 说明: 指定访问静态文件时是需要通过 &#x2F;static&#x2F;xxx或 127.0.0.1:8000&#x2F;static&#x2F;xxx xxx 表示具体的静态资源位置     配置静态文件的存储路径 STATICFILES_DIRS  STATICFILES_DIRS保存的是静态文件在服务器端的存储位置   示例:  1234# file: setting.pySTATICFILES_DIRS = (    os.path.join(BASE_DIR, &quot;static&quot;),)   访问静态文件 使用静态文件的访问路径进行访问  访问路径: STATIC_URL &#x3D; ‘&#x2F;static&#x2F;...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day05/" title="Django学习-day05"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day05</div></div><div class="info-2"><div class="info-item-1">admin 后台数据库管理 django 提供了比较完善的后台管理数据库的接口，可供开发过程中调用和测试使用 django 会搜集所有已注册的模型类，为这些模型类提拱数据管理界面，供开发者使用 使用步骤: 创建后台管理帐号: 后台管理–创建管理员帐号 $ python3 manage.py createsuperuser             根据提示完成注册,参考如下:  1234567$ python3 manage.py createsuperuserUsername (leave blank to use &#x27;tarena&#x27;): tarena  # 此处输入用户名Email address: laowei@tedu.cn  # 此处输入邮箱Password: # 此处输入密码(密码要复杂些，否则会提示密码太简单)Password (again): # 再次输入重复密码Superuser created successfully.$      用注册的帐号登陆后台管理界面 后台管理的登录地址: http://127.0.0.1:8000/admin/  ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xuru</div><div class="author-info-description">专注技术学习，分享学习之路，博客内容配套Gitee源码</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Django%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">Django的框架设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF-Templates"><span class="toc-number">2.</span> <span class="toc-text">模板 Templates</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django-%E6%A8%A1%E6%9D%BF%E8%AF%AD%E8%A8%80"><span class="toc-number">2.1.</span> <span class="toc-text">Django 模板语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E4%BC%A0%E5%8F%82"><span class="toc-number">2.1.1.</span> <span class="toc-text">模板的传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">模板的变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS%E6%94%BB%E5%87%BB"><span class="toc-number">2.1.3.</span> <span class="toc-text">XSS攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8Bxss"><span class="toc-number">2.1.3.1.</span> <span class="toc-text">反射型xss</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8Bxss"><span class="toc-number">2.1.3.2.</span> <span class="toc-text">存储型xss</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM-xss"><span class="toc-number">2.1.3.3.</span> <span class="toc-text">DOM xss</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E6%A0%87%E7%AD%BE"><span class="toc-number">2.1.4.</span> <span class="toc-text">模板的标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">2.1.5.</span> <span class="toc-text">过滤器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-number">2.2.</span> <span class="toc-text">模板的继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#url-%E5%8F%8D%E5%90%91%E8%A7%A3%E6%9E%90"><span class="toc-number">2.3.</span> <span class="toc-text">url 反向解析</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By xuru</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

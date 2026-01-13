@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>python容器函数 | xuru的技术学习博客</title><meta name="author" content="xuru"><meta name="copyright" content="xuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文详细讲解python容器函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python容器函数">
+<meta property="og:url" content="https://xurucby.github.io/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="xuru的技术学习博客">
+<meta property="og:description" content="本文详细讲解python容器函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xurucby.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-01-13T03:47:38.000Z">
+<meta property="article:modified_time" content="2026-01-13T03:52:42.337Z">
+<meta property="article:author" content="xuru">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xurucby.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "python容器函数",
+  "url": "https://xurucby.github.io/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/",
+  "image": "https://xurucby.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-01-13T03:47:38.000Z",
+  "dateModified": "2026-01-13T03:52:42.337Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "xuru",
+      "url": "https://xurucby.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xurucby.github.io/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'python容器函数',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xuru的技术学习博客</span></a><a class="nav-page-title" href="/"><span class="site-name">python容器函数</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">python容器函数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-13T03:52:42.337Z" title="更新于 2026-01-13 11:52:42">2026-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/python/">python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="列表（list）相关方法说明"><a href="#列表（list）相关方法说明" class="headerlink" title="列表（list）相关方法说明"></a>列表（list）相关方法说明</h1><h2 id="一、查找相关方法"><a href="#一、查找相关方法" class="headerlink" title="一、查找相关方法"></a>一、查找相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>L.index(v [, begin[, end]])</code></td>
+<td>返回对应元素的索引下标，begin 为开始索引，end 为结束索引；当 value 不存在时触发 ValueError 错误</td>
+</tr>
+<tr>
+<td><code>L.count(x)</code></td>
+<td>用于统计某个元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td><code>L.pop([index])</code></td>
+<td>删除索引对应的元素，如果不加索引，默认删除最后一个元素，同时返回删除元素的引用关系</td>
+</tr>
+</tbody></table>
+<h2 id="二、修改相关方法"><a href="#二、修改相关方法" class="headerlink" title="二、修改相关方法"></a>二、修改相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>L.insert(index, obj)</code></td>
+<td>将某个元素插放到列表中指定的位置</td>
+</tr>
+<tr>
+<td><code>L.extend(lst)</code></td>
+<td>向列表追加另一个列表（将 lst 中的所有元素添加到原列表末尾）</td>
+</tr>
+<tr>
+<td><code>L.remove(x)</code></td>
+<td>从列表中删除第一次出现在列表中的指定值</td>
+</tr>
+<tr>
+<td><code>L.clear()</code></td>
+<td>清空列表，等同于 <code>L[:] = []</code></td>
+</tr>
+<tr>
+<td><code>L.sort(reverse=False)</code></td>
+<td>将列表中的元素进行排序，默认按值从小到大的顺序排列（reverse&#x3D;True 时按从大到小排序）</td>
+</tr>
+<tr>
+<td><code>L.reverse()</code></td>
+<td>列表反转，改变原列表的先后顺序</td>
+</tr>
+</tbody></table>
+<h2 id="三、拷贝相关方法"><a href="#三、拷贝相关方法" class="headerlink" title="三、拷贝相关方法"></a>三、拷贝相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>L.copy()</code></td>
+<td>复制此列表（只复制一层，不会复制深层对象）</td>
+</tr>
+</tbody></table>
+<h1 id="字符串（str）相关方法说明"><a href="#字符串（str）相关方法说明" class="headerlink" title="字符串（str）相关方法说明"></a>字符串（str）相关方法说明</h1><h2 id="一、判断相关方法"><a href="#一、判断相关方法" class="headerlink" title="一、判断相关方法"></a>一、判断相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>isspace()</code></td>
+<td>如果字符串中只包含空白，则返回 True，否则返回 False</td>
+</tr>
+<tr>
+<td><code>startswith(substr, beg=0, end=len(string))</code></td>
+<td>检查字符串是否是以指定子字符串 substr 开头，是则返回 True，否则返回 False；如果 beg 和 end 指定值，则在指定范围内检查</td>
+</tr>
+<tr>
+<td><code>endswith(suffix, beg=0, end=len(string))</code></td>
+<td>检查字符串是否以 suffix 结束，如果 beg 或者 end 指定，则检查指定范围内是否以 suffix 结束，是则返回 True，否则返回 False</td>
+</tr>
+</tbody></table>
+<h2 id="二、查找相关方法"><a href="#二、查找相关方法" class="headerlink" title="二、查找相关方法"></a>二、查找相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>find(str, beg=0, end=len(string))</code></td>
+<td>检测 str 是否包含在字符串中，如果指定范围 beg 和 end，则检查是否包含在指定范围内；如果包含返回开始的索引值，否则返回 -1</td>
+</tr>
+<tr>
+<td><code>rfind(str, beg=0, end=len(string))</code></td>
+<td>类似于 find() 函数，不过是从字符串右边开始查找</td>
+</tr>
+<tr>
+<td><code>count(str, beg=0, end=len(string))</code></td>
+<td>返回 str 在字符串里面出现的次数，如果 beg 或者 end 指定，则返回指定范围内 str 出现的次数</td>
+</tr>
+</tbody></table>
+<h2 id="三、修改相关方法"><a href="#三、修改相关方法" class="headerlink" title="三、修改相关方法"></a>三、修改相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>replace(old, new [, max])</code></td>
+<td>把字符串中的 old 替换成 new，如果 max 指定，则替换不超过 max 次</td>
+</tr>
+<tr>
+<td><code>lstrip()</code></td>
+<td>截掉字符串左边的空格或指定字符</td>
+</tr>
+<tr>
+<td><code>rstrip()</code></td>
+<td>删除字符串末尾的空格</td>
+</tr>
+<tr>
+<td><code>strip([chars])</code></td>
+<td>在字符串上执行 lstrip() 和 rstrip()（即去除字符串两端的空格或指定字符）</td>
+</tr>
+<tr>
+<td><code>lower()</code></td>
+<td>转换字符串中所有大写字符为小写</td>
+</tr>
+<tr>
+<td><code>upper()</code></td>
+<td>转换字符串中的小写字母为大写</td>
+</tr>
+<tr>
+<td><code>swapcase()</code></td>
+<td>将字符串中大写转换为小写，小写转换为大写</td>
+</tr>
+</tbody></table>
+<h2 id="四、对齐相关方法"><a href="#四、对齐相关方法" class="headerlink" title="四、对齐相关方法"></a>四、对齐相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>center(width, fillchar)</code></td>
+<td>返回一个指定宽度 width 居中的字符串，fillchar 为填充的字符，默认为空格</td>
+</tr>
+<tr>
+<td><code>zfill(width)</code></td>
+<td>返回长度为 width 的字符串，原字符串右对齐，前面填充 0</td>
+</tr>
+<tr>
+<td><code>ljust(width[, fillchar])</code></td>
+<td>返回一个原字符串左对齐，并使用 fillchar 填充至长度 width 的新字符串，fillchar 默认为空格</td>
+</tr>
+</tbody></table>
+<h1 id="字典（dict）相关方法说明"><a href="#字典（dict）相关方法说明" class="headerlink" title="字典（dict）相关方法说明"></a>字典（dict）相关方法说明</h1><h2 id="一、查找相关方法-1"><a href="#一、查找相关方法-1" class="headerlink" title="一、查找相关方法"></a>一、查找相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>get(key, default=None)</code></td>
+<td>返回指定键的值，如果值不在字典中返回 default 值</td>
+</tr>
+<tr>
+<td><code>setdefault(key, default=None)</code></td>
+<td>和 get() 类似，但如果键不存在于字典中，将会添加键并将值设为 default</td>
+</tr>
+<tr>
+<td><code>popitem()</code></td>
+<td>随机返回并删除字典中的一对键和值（一般删除末尾对）</td>
+</tr>
+<tr>
+<td><code>items()</code></td>
+<td>以列表返回可遍历的（键, 值）元组数组</td>
+</tr>
+<tr>
+<td><code>keys()</code></td>
+<td>返回一个迭代器，可以使用 list() 来转换为列表</td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>返回一个迭代器，可以使用 list() 来转换为列表</td>
+</tr>
+</tbody></table>
+<h2 id="二、修改相关方法-1"><a href="#二、修改相关方法-1" class="headerlink" title="二、修改相关方法"></a>二、修改相关方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>update(dict2)</code></td>
+<td>字典记录累加（将 dict2 中的键值对添加到原字典，若存在相同键则覆盖原值）</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>删除字典内所有元素</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xurucby.github.io">xuru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xurucby.github.io/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/">https://xurucby.github.io/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xurucby.github.io" target="_blank">xuru的技术学习博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">python高级</div></div><div class="info-2"><div class="info-item-1">1 程序结构1.1 模块 Module1.1.1 定义包含一系列数据、函数、类的文件，通常以.py结尾。 1.1.2 作用 让相关的数据、函数、类有逻辑地组织在一起，使逻辑结构更清晰。 有利于多人合作开发。  1.1.3 导入1.1.3.1 import 语法：12import 模块名import 模块名 as 别名 作用：将模块整体导入到当前模块中 使用：模块名.成员  1.1.3.2 from import 语法：123from 模块名 import 成员名from 模块名 import 成员名 as 别名from 模块名 import * 作用：将模块内的成员导入到当前模块作用域中 使用：直接使用成员名  导入示例代码123456789101112131415161718192021222324252627282930# module01.pydef func01():    print(&quot;module01 - func01执行喽&quot;)def func02():    print(&quot;module01 - func02执行喽&quot;)# 导入方...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">python高级</div></div><div class="info-2"><div class="info-item-1">1 程序结构1.1 模块 Module1.1.1 定义包含一系列数据、函数、类的文件，通常以.py结尾。 1.1.2 作用 让相关的数据、函数、类有逻辑地组织在一起，使逻辑结构更清晰。 有利于多人合作开发。  1.1.3 导入1.1.3.1 import 语法：12import 模块名import 模块名 as 别名 作用：将模块整体导入到当前模块中 使用：模块名.成员  1.1.3.2 from import 语法：123from 模块名 import 成员名from 模块名 import 成员名 as 别名from 模块名 import * 作用：将模块内的成员导入到当前模块作用域中 使用：直接使用成员名  导入示例代码123456789101112131415161718192021222324252627282930# module01.pydef func01():    print(&quot;module01 - func01执行喽&quot;)def func02():    print(&quot;module01 - func02执行喽&quot;)# 导入方...</div></div></div></a><a class="pagination-related" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">python面向对象</div></div><div class="info-2"><div class="info-item-1">1. 概述1.1 面向过程 定义：分析出解决问题的步骤，然后逐步实现。 示例：婚礼筹办需依次完成请柬准备、宴席安排、仪式策划等步骤。   公式：程序 &#x3D; 算法 + 数据结构 优点：所有环节、细节可自主掌控。 缺点：需考虑全部细节，工作量大。  1.2 面向对象 定义：找出解决问题的相关对象，然后为其分配职责。 示例：婚礼筹办可委托摄影公司负责请柬、酒店负责宴席、婚庆公司负责仪式。   公式：程序 &#x3D; 对象 + 交互 优点： 思想层面：可模拟现实情景，更贴近人类思维，便于梳理和分析问题。 技术层面：高复用（封装重复代码）、高扩展（新增功能不修改旧代码）、高维护（代码逻辑清晰）。   缺点：学习曲线较陡峭。  2. 类和对象 抽象：从具体事物中抽离共性、本质，舍弃个别、非本质特征的过程。 示例：手机的共性数据（品牌、价格、颜色）和行为（通话）。   类：一个抽象的概念，对应生活中的“类别”。 对象：类的具体实例，即归属于某个类别的“个体”。 类是创建对象的“模板”。  2.1 语法2.1.1 定义类 代码：1234567class 类名:    &quot;&qu...</div></div></div></a><a class="pagination-related" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">python核心</div></div><div class="info-2"><div class="info-item-1">2. Python简介2.1 计算机基础结构2.1.1 硬件1944年，美籍匈牙利数学家冯·诺依曼提出计算机基本结构，五大组成部分如下：  运算器：按照程序中的指令，对数据进行加工处理 控制器：根据程序需求，指挥计算机的各个部件协调工作 通常将运算器和控制器集成在中央处理器（CPU）中 存储器：保存各类程序的数据信息 内存RAM：容量小，速度快，临时存储数据 硬盘HDD：容量大，速度慢，永久存储数据   输入设备：外界向计算机传送信息的装置，例如：鼠标、键盘、扫描仪… 输出设备：计算机向外界传送信息的装置，例如：显示器、音响、打印机…  硬件工作流程：外存储器（如程序、原始数据）→输入设备→内存储器→运算器，控制器发出存取指令、运算命令，运算器处理后的数据回存内存储器，再通过输出设备输出信息。 2.1.2 软件软件层级结构：用户→应用软件→操作系统→计算机硬件  操作系统： 管理和控制计算机软件与硬件资源的程序 隔离不同硬件的差异，使软件开发简单化 常见系统：Windows、Linux、Unix   应用软件：为了某种特定的用途而被开发的软件 软件的组成：程序 + 文档 程序：是...</div></div></div></a><a class="pagination-related" href="/2026/01/13/python%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="python网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">python网络编程</div></div><div class="info-2"><div class="info-item-1">1. 文件读写1.1 引入 什么是文件 文件是保存在持久化存储设备(硬盘、U盘、光盘..)上的一段数据，一个文本，一个py文件，一张图片，视频音频等这些都是文件。  文件分类  文本文件：打开后会自动解码为字符，如txt文件，word文件，py程序文件。 二进制文件：内部编码为二进制码，无法通过文字编码解析，如压缩包，音频，视频，图片等。   字节串类型  概念 ： 在python3中引入了字节串的概念，与str不同，字节串以字节序列值表达数据，更方便用来处理二进程数据。  字符串与字节串相互转化方法 12345- 普通的英文字符字符串常量可以在前面加b转换为字节串，例如：b&#x27;hello&#x27;- 变量或者包含非英文字符的字符串转换为字节串方法 ：str.encode()- 字节串转换为字符串方法 : bytes.decode() 注意：python字符串用来表达utf8字符，因为并不是所有二进制内容都可以转化为utf8字符，所以不是所有字节串都能转化为字符串，但是所有字符串都能转化成二进制，所以所有字符串都能转换为字节串。    1.2 文件读写操作使用程序操作文...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xuru</div><div class="author-info-description">专注技术学习，分享学习之路，博客内容配套Gitee源码</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%EF%BC%88list%EF%BC%89%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">列表（list）相关方法说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9F%A5%E6%89%BE%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">一、查找相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BF%AE%E6%94%B9%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">二、修改相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8B%B7%E8%B4%9D%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">三、拷贝相关方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88str%EF%BC%89%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">字符串（str）相关方法说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%A4%E6%96%AD%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">一、判断相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9F%A5%E6%89%BE%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">二、查找相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BF%AE%E6%94%B9%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">三、修改相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%B9%E9%BD%90%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">四、对齐相关方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%EF%BC%88dict%EF%BC%89%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">字典（dict）相关方法说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9F%A5%E6%89%BE%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95-1"><span class="toc-number">3.1.</span> <span class="toc-text">一、查找相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BF%AE%E6%94%B9%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95-1"><span class="toc-number">3.2.</span> <span class="toc-text">二、修改相关方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By xuru</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

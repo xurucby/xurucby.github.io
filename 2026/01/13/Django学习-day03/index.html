@@ -1,0 +1,739 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Django学习-day03 | xuru的技术学习博客</title><meta name="author" content="xuru"><meta name="copyright" content="xuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文详细讲解Django静态文件&#x2F;应用&#x2F;模型基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django学习-day03">
+<meta property="og:url" content="https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/index.html">
+<meta property="og:site_name" content="xuru的技术学习博客">
+<meta property="og:description" content="本文详细讲解Django静态文件&#x2F;应用&#x2F;模型基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xurucby.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-01-12T16:32:50.000Z">
+<meta property="article:modified_time" content="2026-01-12T16:59:02.418Z">
+<meta property="article:author" content="xuru">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xurucby.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Django学习-day03",
+  "url": "https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/",
+  "image": "https://xurucby.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-01-12T16:32:50.000Z",
+  "dateModified": "2026-01-12T16:59:02.418Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "xuru",
+      "url": "https://xurucby.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Django学习-day03',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xuru的技术学习博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Django学习-day03</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Django学习-day03</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-12T16:32:50.000Z" title="发表于 2026-01-13 00:32:50">2026-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-12T16:59:02.418Z" title="更新于 2026-01-13 00:59:02">2026-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Django/">Django</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="静态文件"><a href="#静态文件" class="headerlink" title="静态文件"></a>静态文件</h2><ol>
+<li>什么是静态文件<ul>
+<li>不能与服务器端做动态交互的文件都是静态文件</li>
+<li>如:图片,css,js,音频,视频,html文件(部分)</li>
+</ul>
+</li>
+<li>静态文件配置<ul>
+<li>在 settings.py 中配置一下两项内容:</li>
+</ul>
+<ol>
+<li><p>配置静态文件的访问路径</p>
+<ul>
+<li>通过哪个url地址找静态文件</li>
+<li>STATIC_URL &#x3D; ‘&#x2F;static&#x2F;‘</li>
+<li>说明:<ul>
+<li>指定访问静态文件时是需要通过 &#x2F;static&#x2F;xxx或 127.0.0.1:8000&#x2F;static&#x2F;xxx</li>
+<li>xxx 表示具体的静态资源位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>配置静态文件的存储路径 <code>STATICFILES_DIRS</code></p>
+<ul>
+<li>STATICFILES_DIRS保存的是静态文件在服务器端的存储位置</li>
+</ul>
+</li>
+<li><p>示例:</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file: setting.py</span></span><br><span class="line">STATICFILES_DIRS = (</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">&quot;static&quot;</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>访问静态文件<ol>
+<li><p>使用静态文件的访问路径进行访问</p>
+<ul>
+<li>访问路径: STATIC_URL &#x3D; ‘&#x2F;static&#x2F;‘</li>
+<li>示例: <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;/static/images/lena.jpg&quot;</span>&gt;</span><br><span class="line">&lt;img src=<span class="string">&quot;http://127.0.0.1:8000/static/images/lena.jpg&quot;</span>&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过 {% static %}标签访问静态文件</p>
+<ul>
+<li><code>&#123;% static %&#125;</code> 表示的就是静态文件访问路径</li>
+</ul>
+<ol>
+<li>加载 static<ul>
+<li><code>&#123;% load static %&#125;</code></li>
+</ul>
+</li>
+<li>使用静态资源时<ul>
+<li>语法:<ul>
+<li><code>&#123;% static '静态资源路径' %&#125;</code></li>
+</ul>
+</li>
+<li>示例:<ul>
+<li><code>&lt;img src=&quot;&#123;% static 'images/lena.jpg' %&#125;&quot;&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Django中的应用-app"><a href="#Django中的应用-app" class="headerlink" title="Django中的应用 - app"></a>Django中的应用 - app</h2><ul>
+<li>应用在Django项目中是一个独立的业务模块,可以包含自己的路由,视图,模板,模型</li>
+</ul>
+<h3 id="创建应用app"><a href="#创建应用app" class="headerlink" title="创建应用app"></a>创建应用app</h3><ul>
+<li><p>创建步骤</p>
+<ol>
+<li>用manage.py 中的子命令 startapp 创建应用文件夹</li>
+</ol>
+<p> python3 manage.py startapp 应用名称</p>
+<pre><code> 如：python3 manage.py startapp music
+</code></pre>
+<ol start="2">
+<li>在settings.py里注册应用</li>
+</ol>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="comment"># ....</span></span><br><span class="line">    <span class="string">&#x27;user&#x27;</span>,  <span class="comment">#用户信息模块</span></span><br><span class="line">    <span class="string">&#x27;music&#x27;</span>,  <span class="comment">#音乐模块</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="应用的结构"><a href="#应用的结构" class="headerlink" title="应用的结构"></a>应用的结构</h3><ol>
+<li><code>migrations</code> 文件夹<ul>
+<li>保存数据迁移的中间文件</li>
+</ul>
+</li>
+<li><code>__init__.py</code><ul>
+<li>应用子包的初始化文件</li>
+</ul>
+</li>
+<li><code>admin.py</code><ul>
+<li>应用的后台管理配置文件</li>
+</ul>
+</li>
+<li><code>apps.py</code><ul>
+<li>应用的属性配置文件</li>
+</ul>
+</li>
+<li><code>models.py</code><ul>
+<li>与数据库相关的模型映射类文件</li>
+</ul>
+</li>
+<li><code>tests.py</code><ul>
+<li>应用的单元测试文件</li>
+</ul>
+</li>
+<li><code>views.py</code><ul>
+<li>定义视图处理函数的文件</li>
+</ul>
+</li>
+</ol>
+<h3 id="应用的分布式路由"><a href="#应用的分布式路由" class="headerlink" title="应用的分布式路由"></a>应用的分布式路由</h3><ul>
+<li>Django中，主路由配置文件(urls.py)可以不处理用户具体路由，主路由配置文件的可以做请求的分发(分布式请求处理)。具体的请求可以由各自的应用来进行处理</li>
+<li>如图:<ul>
+<li><img src="/./images/urls.png"></li>
+</ul>
+</li>
+</ul>
+<h4 id="include-函数"><a href="#include-函数" class="headerlink" title="include 函数"></a>include 函数</h4><ul>
+<li><p>作用:</p>
+<ul>
+<li>用于分发将当前路由转到各个应用的路由配置文件的 urlpatterns 进行分布式处理</li>
+</ul>
+</li>
+<li><p>函数格式</p>
+<ul>
+<li>include(‘app命字.url模块名’)<blockquote>
+<p>模块<code>app命字/url模块名.py</code> 文件件里必须有urlpatterns 列表<br>使用前需要使用 <code>from django.conf.urls import include</code> 导入此函数</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>练习:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.创建两个应用    </span><br><span class="line">    1.创建 sport 应用,并注册</span><br><span class="line">    2.创建 news  应用,并注册</span><br><span class="line"> </span><br><span class="line">2.创建分布式路由系统</span><br><span class="line">   	1. http://127.0.0.1:8000/sport/index</span><br><span class="line">        交给 sport 应用中的 index_view() 函数处理</span><br><span class="line">    2. http://127.0.0.1:8000/news/index</span><br><span class="line">        交给 news  应用中的 index_view() 函数处理</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="应用的模板"><a href="#应用的模板" class="headerlink" title="应用的模板"></a>应用的模板</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">应用内部可以配置模板目录</span><br><span class="line"><span class="number">1</span>，应用下手动创建 templates 文件夹</span><br><span class="line"><span class="number">2</span>，settings.py中确认 TEMPLATE 配置项中 的 <span class="string">&#x27;APP_DIRS&#x27;</span> 值</span><br><span class="line">   例如 ： <span class="string">&#x27;APP_DIRS&#x27;</span>: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#应用下templates 和 外层templates 都存在时，django得查找模板规则</span></span><br><span class="line"><span class="number">1</span>，优先查找外层templates目录下的模板</span><br><span class="line"><span class="number">2</span>，按INSTALLED_APPS配置下的 应用顺序 逐层查找</span><br></pre></td></tr></table></figure>
+
+<h2 id="模型层"><a href="#模型层" class="headerlink" title="模型层"></a>模型层</h2><h3 id="Django下配置使用-mysql-数据库"><a href="#Django下配置使用-mysql-数据库" class="headerlink" title="Django下配置使用 mysql 数据库"></a>Django下配置使用 mysql 数据库</h3><ol>
+<li>安装 mysqlclient [版本 mysqlclient 1.3.13以上 ，官网目前为1.4.x]<ul>
+<li><p>安装前确认ubuntu是否已安装 python3-dev 和  default-libmysqlclient-dev</p>
+</li>
+<li><p>sudo apt list –installed|grep -E ‘libmysqlclient-dev|python3-dev’</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>若命令无输出则需要安装 -  sudo apt-get install python3-dev default-libmysqlclient-dev</p>
+<ul>
+<li>确保上述两个库已经安装，执行 sudo pip3 install mysqlclient即可</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>创建 和 配置数据库<ol>
+<li>创建数据库<ul>
+<li>创建 <code>create database 数据库名 default charset utf8      ;</code> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database mywebdb <span class="keyword">default</span> charset utf8 <span class="keyword">collate</span> utf8_general_ci;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>数据库的配置<ul>
+<li>sqlite 数据库配置  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file: settings.py</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.sqlite3&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;NAME&#x27;</span>: os.path.join(BASE_DIR, <span class="string">&#x27;db.sqlite3&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>mysql 数据库配置  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span> : &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;mywebdb&#x27;</span>,  <span class="comment"># 数据库名称,需要自己定义</span></span><br><span class="line">        <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;123456&#x27;</span>,  <span class="comment"># 管理员密码</span></span><br><span class="line">        <span class="string">&#x27;HOST&#x27;</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PORT&#x27;</span>: <span class="number">3306</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>关于数据为的SETTING设置<ol>
+<li><p>ENGINE</p>
+<ul>
+<li>指定数据库的后端引擎 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x27;django.db.backends.mysql&#x27;</span><br><span class="line">&#x27;django.db.backends.sqlite3&#x27;</span><br><span class="line">&#x27;django.db.backends.oracle&#x27;</span><br><span class="line">&#x27;django.db.backends.postgresql&#x27;</span><br></pre></td></tr></table></figure></li>
+<li>mysql引擎如下:<ul>
+<li>‘django.db.backends.mysql’</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NAME</p>
+<ul>
+<li>指定要连接的数据库的名称</li>
+<li><code>&#39;NAME&#39;: &#39;mywebdb&#39;</code></li>
+</ul>
+</li>
+<li><p>USER</p>
+<ul>
+<li>指定登录到数据库的用户名</li>
+<li><code>&#39;USER&#39;:&#39;root&#39;</code></li>
+</ul>
+</li>
+<li><p>PASSWORD</p>
+<ul>
+<li>接数据库的密码。</li>
+<li><code>&#39;PASSWORD&#39;:&#39;123456&#39;</code></li>
+</ul>
+</li>
+<li><p>HOST</p>
+<ul>
+<li>连接数据库时使用哪个主机。</li>
+<li><code>&#39;HOST&#39;:&#39;127.0.0.1&#39;</code></li>
+</ul>
+</li>
+<li><p>PORT</p>
+<ul>
+<li>连接数据库时使用的端口。</li>
+<li><code>&#39;PORT&#39;:&#39;3306&#39;</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="模型（Models）"><a href="#模型（Models）" class="headerlink" title="模型（Models）"></a>模型（Models）</h3><ul>
+<li>模型是一个Python类，它是由django.db.models.Model派生出的子类。</li>
+<li>一个模型类代表数据库中的一张数据表</li>
+<li>模型类中每一个类属性都代表数据库中的一个字段。</li>
+<li>模型是数据交互的接口，是表示和操作数据库的方法和方式</li>
+</ul>
+<h3 id="Django-的-ORM框架"><a href="#Django-的-ORM框架" class="headerlink" title="Django 的 ORM框架"></a>Django 的 ORM框架</h3><ul>
+<li>ORM（Object Relational Mapping）即对象关系映射，它是一种程序技术，它允许你使用类和对象对数据库进行操作,从而避免通过SQL语句操作数据库</li>
+<li>ORM框架的作用<ol>
+<li>建立模型类和表之间的对应关系，允许我们通过面向对象的方式来操作数据库。</li>
+<li>根据设计的模型类生成数据库中的表格。</li>
+<li>通过简单的配置就可以进行数据库的切换。</li>
+</ol>
+</li>
+<li>ORM 好处:<ol>
+<li>只需要面向对象编程, 不需要面向数据库编写代码.<ul>
+<li>对数据库的操作都转化成对类属性和方法的操作.</li>
+<li>不用编写各种数据库的sql语句.</li>
+</ul>
+</li>
+<li>实现了数据模型与数据库的解耦, 屏蔽了不同数据库操作上的差异.<ul>
+<li>不在关注用的是mysql、oracle…等数据库的内部细节.</li>
+<li>通过简单的配置就可以轻松更换数据库, 而不需要修改代码.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>ORM 缺点<ol>
+<li>对于复杂业务，使用成本较高</li>
+<li>根据对象的操作转换成SQL语句,根据查询的结果转化成对象, 在映射过程中有性能损失.</li>
+</ol>
+</li>
+<li>ORM 示意<ul>
+<li><img src="/images/orm.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="模型示例"><a href="#模型示例" class="headerlink" title="模型示例"></a>模型示例</h3><ul>
+<li><p>此示例为添加一个 bookstore_book 数据表来存放图书馆中书目信息</p>
+</li>
+<li><p>添加一个 bookstore 的 app</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">python3 manage.py startapp bookstore</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册app</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file : setting.py</span></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&#x27;bookstore&#x27;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加模型类</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file : bookstore/models.py</span></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>(models.Model): </span><br><span class="line">    title = models.CharField(<span class="string">&quot;书名&quot;</span>, max_length=<span class="number">50</span>, default=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    price = models.DecimalField(<span class="string">&#x27;定价&#x27;</span>, max_digits=<span class="number">7</span>, decimal_places=<span class="number">2</span>, default=<span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库的迁移</p>
+<ul>
+<li>迁移是Django同步您对模型所做更改（添加字段，删除模型等） 到您的数据库模式的方式</li>
+</ul>
+<ol>
+<li>生成或更新迁移文件</li>
+</ol>
+<p>​	将每个应用下的models.py文件生成一个中间文件,并保存在migrations文件夹中</p>
+<p>​	<code>python3 manage.py makemigrations</code></p>
+<ol start="2">
+<li><p>执行迁移脚本程序</p>
+<p>执行迁移程序实现迁移。将每个应用下的migrations目录中的中间文件同步回数据库</p>
+<p><code>python3 manage.py migrate</code></p>
+<p>注:  每次修改完模型类再对服务程序运行之前都需要做以上两步迁移操作。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="模型类Models-创建"><a href="#模型类Models-创建" class="headerlink" title="模型类Models 创建"></a>模型类Models 创建</h3><ul>
+<li><p>模型类需继承自<code>django.db.models.Model</code></p>
+<p>  Models的语法规范</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">class 模型类名(models.Model):</span><br><span class="line">    字段名 = models.字段类型(字段选项)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>模型类名是数据表名的一部分，建议类名首字母大写<br>字段名又是当前类的类属性名，此名称将作为数据表的字段名<br>字段类型用来映射到数据表中的字段的类型<br>字段选项为这些字段提供附加的参数信息</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h4><ol>
+<li><p>BooleanField()</p>
+<ul>
+<li>数据库类型:tinyint(1)</li>
+<li>编程语言中:使用True或False来表示值</li>
+<li>在数据库中:使用1或0来表示具体的值</li>
+</ul>
+</li>
+<li><p>CharField()</p>
+<ul>
+<li>数据库类型:varchar</li>
+<li>注意:<ul>
+<li>必须要指定max_length参数值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DateField()</p>
+<ul>
+<li>数据库类型:date</li>
+<li>作用:表示日期</li>
+<li>参数:<ul>
+<li>auto_now: 每次保存对象时，自动设置该字段为当前时间(取值:True&#x2F;False)。</li>
+<li>auto_now_add: 当对象第一次被创建时自动设置当前时间(取值:True&#x2F;False)。</li>
+<li>default: 设置当前时间(取值:字符串格式时间如: ‘2019-6-1’)。</li>
+<li>以上三个参数只能多选一</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DateTimeField()</p>
+<ul>
+<li>数据库类型:datetime(6)</li>
+<li>作用:表示日期和时间</li>
+<li>参数同DateField</li>
+</ul>
+</li>
+<li><p>DecimalField()</p>
+<ul>
+<li><p>数据库类型:decimal(x,y)</p>
+</li>
+<li><p>编程语言中:使用小数表示该列的值</p>
+</li>
+<li><p>在数据库中:使用小数</p>
+</li>
+<li><p>参数:</p>
+<ul>
+<li>max_digits: 位数总数，包括小数点后的位数。 该值必须大于等于decimal_places.</li>
+<li>decimal_places: 小数点后的数字数量</li>
+</ul>
+</li>
+<li><p>示例:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">money=models.DecimalField(</span><br><span class="line">    max_digits=7,</span><br><span class="line">    decimal_places=2,</span><br><span class="line">    default=0.0</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>FloatField()</p>
+<ul>
+<li>数据库类型:double</li>
+<li>编程语言中和数据库中都使用小数表示值</li>
+</ul>
+</li>
+<li><p>EmailField()</p>
+<ul>
+<li>数据库类型:varchar</li>
+<li>编程语言和数据库中使用字符串</li>
+</ul>
+</li>
+<li><p>IntegerField()</p>
+<ul>
+<li>数据库类型:int</li>
+<li>编程语言和数据库中使用整数</li>
+</ul>
+</li>
+<li><p>URLField()</p>
+<ul>
+<li>数据库类型:varchar(200)</li>
+<li>编程语言和数据库中使用字符串</li>
+</ul>
+</li>
+<li><p>ImageField()</p>
+<ul>
+<li>数据库类型:varchar(100)</li>
+<li>作用:在数据库中为了保存图片的路径</li>
+<li>编程语言和数据库中使用字符串</li>
+</ul>
+</li>
+<li><p>TextField()</p>
+<ul>
+<li>数据库类型:longtext</li>
+<li>作用:表示不定长的字符数据</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>参考文档 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types">https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types</a></li>
+</ul>
+<h4 id="字段选项"><a href="#字段选项" class="headerlink" title="字段选项"></a>字段选项</h4><ul>
+<li>字段选项, 指定创建的列的额外的信息</li>
+<li>允许出现多个字段选项,多个选项之间使用,隔开</li>
+</ul>
+<ol>
+<li>primary_key<ul>
+<li>如果设置为True,表示该列为主键,如果指定一个字段为主键，则此数库表不会创建id字段</li>
+</ul>
+</li>
+<li>blank<ul>
+<li>设置为True时，字段可以为空。设置为False时，字段是必须填写的。</li>
+</ul>
+</li>
+<li>null<ul>
+<li>如果设置为True,表示该列值允许为空。</li>
+<li>默认为False,如果此选项为False建议加入default选项来设置默认值</li>
+</ul>
+</li>
+<li>default<ul>
+<li>设置所在列的默认值,如果字段选项null&#x3D;False建议添加此项</li>
+</ul>
+</li>
+<li>db_index<ul>
+<li>如果设置为True,表示为该列增加索引</li>
+</ul>
+</li>
+<li>unique<ul>
+<li>如果设置为True,表示该字段在数据库中的值必须是唯一(不能重复出现的)</li>
+</ul>
+</li>
+<li>db_column<ul>
+<li>指定列的名称,如果不指定的话则采用属性名作为列名</li>
+</ul>
+</li>
+<li>verbose_name<ul>
+<li>设置此字段在admin界面上的显示名称。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>示例:</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个属性,表示用户名称,长度30个字符,必须是唯一的,不能为空,添加索引</span></span><br><span class="line">name = models.CharField(max_length=<span class="number">30</span>, unique=<span class="literal">True</span>, null=<span class="literal">False</span>, db_index=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文档参见:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-options">https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-options</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="Meta内部类"><a href="#Meta内部类" class="headerlink" title="Meta内部类"></a>Meta内部类</h4><ul>
+<li><p>使用内部 Meta类 来给模型赋予属性，Meta类下有很多内建的类属性，可对模型类做一些控制</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file : bookstore/models.py</span></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>(models.Model): </span><br><span class="line">    title = models.CharField(<span class="string">&quot;书名&quot;</span>, max_length=<span class="number">50</span>, default=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    price = models.DecimalField(<span class="string">&#x27;定价&#x27;</span>, max_digits=<span class="number">7</span>, decimal_places=<span class="number">2</span>, default=<span class="number">0.0</span>)</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        db_table = <span class="string">&#x27;book&#x27;</span>  <span class="comment">#可改变当前模型类对应的表名</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="数据库迁移的错误处理方法"><a href="#数据库迁移的错误处理方法" class="headerlink" title="数据库迁移的错误处理方法"></a>数据库迁移的错误处理方法</h3><ul>
+<li><p>当执行 <code>$ python3 manage.py makemigrations</code> 出现如下迁移错误时的处理方法</p>
+<ul>
+<li>错误信息  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">You are trying to add a non-nullable field &#x27;des&#x27; to book without a default; we can&#x27;t do that (the database needs something to populate existing rows).</span><br><span class="line">Please select a fix:</span><br><span class="line"> 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)</span><br><span class="line"> 2) Quit, and let me add a default in models.py</span><br><span class="line">Select an option:  </span><br></pre></td></tr></table></figure></li>
+<li>翻译为中文如下:  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">您试图添加一个非空字段&#x27;des&#x27;来预订没有默认;我们不能这样做(数据库需要填充现有行)</span><br><span class="line">请选择修复:</span><br><span class="line">1)现在提供一次性默认值(将对所有现有行设置此列的空值)</span><br><span class="line">2)退出，让我在models.py中添加一个默认值</span><br><span class="line">选择一个选项:</span><br></pre></td></tr></table></figure></li>
+<li>错误原因<ul>
+<li>当对模型类新添加一个字段时可出现该错误</li>
+<li>原理是 添加新字段后，数据库不知道原来已有数据对于新建字段该如何赋值，所以新增字段时，务必要添加default默认值。</li>
+</ul>
+</li>
+<li>处理方法:<ol>
+<li>选择1 则会进入到shell中，手动输入一个默认值</li>
+<li>退出当前生成迁移文件的过程，自己去修改models.py, 新增加一个<code>default=XXX</code> 的缺省值(推荐使用)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>数据库的迁移文件混乱的解决办法</p>
+<ol>
+<li>删除 所有 migrations 里所有的 000?_XXXX.py (<code>__init__.py</code>除外)</li>
+<li>删除 数据库<ul>
+<li>sql&gt; drop database mywebdb;</li>
+</ul>
+</li>
+<li>重新创建 数据库<ul>
+<li>sql&gt; create datebase mywebdb default charset…;</li>
+</ul>
+</li>
+<li>重新生成migrations里所有的 000?_XXXX.py<ul>
+<li>python3 manage.py makemigrations</li>
+</ul>
+</li>
+<li>重新更新数据库<ul>
+<li>python3 manage.py migrate</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="模型层的基本操作"><a href="#模型层的基本操作" class="headerlink" title="模型层的基本操作"></a>模型层的基本操作</h2><ul>
+<li>基本操作包括增删改查操作，即(CRUD操作)</li>
+<li>CRUD是指在做计算处理时的增加(Create)、读取查询(Read)、更新(Update)和删除(Delete)</li>
+</ul>
+<h3 id="管理器对象"><a href="#管理器对象" class="headerlink" title="管理器对象"></a>管理器对象</h3><ul>
+<li>每个继承自 models.Model 的模型类，都会有一个 objects 对象被同样继承下来。这个对象叫管理器对象</li>
+<li>数据库的增删改查可以通过模型的管理器实现  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyModel</span>(models.Model):</span><br><span class="line">    ...</span><br><span class="line">MyModel.objects.create(...) <span class="comment"># objects 是管理器对象</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="创建数据对象"><a href="#创建数据对象" class="headerlink" title="创建数据对象"></a>创建数据对象</h3><ul>
+<li>Django 使用一种直观的方式把数据库表中的数据表示成Python 对象</li>
+<li>创建数据中每一条记录就是创建一个数据对象<ol>
+<li>MyModel.objects.create(属性1&#x3D;值1, 属性2&#x3D;值1,…)<ul>
+<li>成功: 返回创建好的实体对象</li>
+<li>失败: 抛出异常</li>
+</ul>
+</li>
+<li>创建 MyModel 实例对象,并调用 save() 进行保存 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj = MyModel(属性=值,属性=值)</span><br><span class="line">obj.属性=值</span><br><span class="line">obj.save()</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h3 id="Django-shell-的使用"><a href="#Django-shell-的使用" class="headerlink" title="Django shell 的使用"></a>Django shell 的使用</h3><ul>
+<li><p>在Django提供了一个交互式的操作项目叫 <code>Django Shell</code> 它能够在交互模式用项目工程的代码执行相应的操作</p>
+</li>
+<li><p>利用 Django Shell 可以代替编写View的代码来进行直接操作</p>
+</li>
+<li><p>在Django Shell 下只能进行简单的操作，不能运行远程调式</p>
+</li>
+<li><p>启动方式:</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">python3 manage.py shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>练习:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在 bookstore/models.py 应用中添加两个model类</span><br><span class="line">1. Book - 图书</span><br><span class="line">    1. title - CharField 书名,非空,唯一</span><br><span class="line">    2. pub - CharField 出版社,字符串,非空</span><br><span class="line">    3. price - DecimalField 图书定价 总长6位/小数点2位</span><br><span class="line">    4. market_price - 图书零售价 总长6位/小数点2位</span><br><span class="line">2. Author - 作者</span><br><span class="line">    1. name - CharField 姓名,非空</span><br><span class="line">    2. age - IntegerField, 年龄,非空，缺省值为1</span><br><span class="line">    3. email - EmailField, 邮箱,允许为空</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后用 Django Shell 添加如下数据<ul>
+<li>图书信息<table>
+<thead>
+<tr>
+<th>书名</th>
+<th>定价</th>
+<th>零售价</th>
+<th>出版社</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Python</td>
+<td>20.00</td>
+<td>25.00</td>
+<td>清华大学出版社</td>
+</tr>
+<tr>
+<td>Django</td>
+<td>70.00</td>
+<td>75.00</td>
+<td>清华大学出版社</td>
+</tr>
+<tr>
+<td>JQuery</td>
+<td>90.00</td>
+<td>85.00</td>
+<td>机械工业出版社</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>80.00</td>
+<td>65.00</td>
+<td>机械工业出版社</td>
+</tr>
+<tr>
+<td>HTML5</td>
+<td>90.00</td>
+<td>105.00</td>
+<td>清华大学出版社</td>
+</tr>
+</tbody></table>
+</li>
+<li>作者信息:<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>年龄</th>
+<th>邮箱</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>王老师</td>
+<td>28</td>
+<td><a href="mailto:&#x77;&#x61;&#110;&#x67;&#x77;&#101;&#105;&#x63;&#104;&#97;&#x6f;&#64;&#116;&#x65;&#100;&#117;&#x2e;&#x63;&#110;">&#x77;&#x61;&#110;&#x67;&#x77;&#101;&#105;&#x63;&#104;&#97;&#x6f;&#64;&#116;&#x65;&#100;&#117;&#x2e;&#x63;&#110;</a></td>
+</tr>
+<tr>
+<td>吕老师</td>
+<td>31</td>
+<td><a href="mailto:&#x6c;&#118;&#122;&#x65;&#64;&#x74;&#x65;&#x64;&#x75;&#46;&#x63;&#110;">&#x6c;&#118;&#122;&#x65;&#64;&#x74;&#x65;&#x64;&#x75;&#46;&#x63;&#110;</a></td>
+</tr>
+<tr>
+<td>祁老师</td>
+<td>30</td>
+<td><a href="mailto:&#x71;&#105;&#x74;&#120;&#64;&#116;&#101;&#x64;&#x75;&#46;&#99;&#110;">&#x71;&#105;&#x74;&#120;&#64;&#116;&#101;&#x64;&#x75;&#46;&#99;&#110;</a></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xurucby.github.io">xuru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/">https://xurucby.github.io/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day03/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xurucby.github.io" target="_blank">xuru的技术学习博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Django/">Django</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day04/" title="Django学习-day04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Django学习-day04</div></div><div class="info-2"><div class="info-item-1">查询数据 数据库的查询需要使用管理器对象进行  通过 MyModel.objects 管理器方法调用查询接口   方法 说明    all() 查询全部记录,返回QuerySet查询对象   get() 查询符合条件的单一记录   filter() 查询符合条件的多条记录   exclude() 查询符合条件之外的全部记录   …       all()方法  方法: all() 用法: MyModel.objects.all() 作用: 查询MyModel实体中所有的数据 等同于 select * from tabel     返回值: QuerySet容器对象,内部存放 MyModel 实例 示例:  1234from bookstore.models import Bookbooks = Book.objects.all()for book in books:    print(&quot;书名&quot;, book.title, &#x27;出版社:&#x27;, book.pub)   在模型类中定义 def __str__(self):  方法可以自定义默认的字符串...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/" title="Django学习-day02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Django学习-day02</div></div><div class="info-2"><div class="info-item-1">Django的框架设计模式 MVC 设计模式 MVC 代表 Model-View-Controller（模型-视图-控制器） 模式。 作用: 降低模块间的耦合度(解耦) MVC M 模型层(Model), 主要用于对数据库层的封装 V 视图层(View), 用于向用户展示结果 C 控制(Controller ，用于处理请求、获取数据、返回结果(重要)   MVC模式如图:     MTV 模式  MTV 代表 Model-Template-View（模型-模板-视图） 模式。这种模式用于应用程序的分层开发 作用:  降低模块间的耦合度(解耦)   MTV  M – 模型层(Model)  负责与数据库交互 T – 模板层(Template)  负责呈现内容到浏览器 V – 视图层(View)  是核心，负责接收请求、获取数据、返回结果   MTV模式如图:      模板 Templates 什么是模板  模板是可以根据字典数据动态变化的html网页 模板可以根据视图中传递的字典数据动态生成相应的HTML网页。   模板的配置  创建模板文件夹&lt;项目名&gt;/templ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day01/" title="Django学习-day01"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day01</div></div><div class="info-2"><div class="info-item-1">Django框架的介绍起源&amp;现状 2005年发布,采用Python语言编写的开源web框架  早期的时候Django主做新闻和内容管理的  一个重量级的 Python Web框架，Django 配备了常用的大部分组件  基本配置 路由系统 原生HTML模板系统 视图 view Model模型,数据库连接和ORM数据库管理 中间件 Cookie &amp; Seesion 分页 数据库后台管理系统admin   Django的用途  网站后端开发 微信公众号、微信小程序等后台开发 基于HTTP&#x2F;HTTPS协议的后台服务器开发 在线语音&#x2F;图像识别服务器 在线第三方身份验证服务器等     Django的版本  最新版本:3.0.x 当前教学版本:2.2.12   Django的官网  官方网址: http://www.djangoproject.com 中文文档(第三方): https://yiyibooks.cn/      Django的安装 查看已安装的版本   123&gt;&gt;&gt; import django&gt;&gt;&gt; pr...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day05/" title="Django学习-day05"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day05</div></div><div class="info-2"><div class="info-item-1">admin 后台数据库管理 django 提供了比较完善的后台管理数据库的接口，可供开发过程中调用和测试使用 django 会搜集所有已注册的模型类，为这些模型类提拱数据管理界面，供开发者使用 使用步骤: 创建后台管理帐号: 后台管理–创建管理员帐号 $ python3 manage.py createsuperuser             根据提示完成注册,参考如下:  1234567$ python3 manage.py createsuperuserUsername (leave blank to use &#x27;tarena&#x27;): tarena  # 此处输入用户名Email address: laowei@tedu.cn  # 此处输入邮箱Password: # 此处输入密码(密码要复杂些，否则会提示密码太简单)Password (again): # 再次输入重复密码Superuser created successfully.$      用注册的帐号登陆后台管理界面 后台管理的登录地址: http://127.0.0.1:8000/admin/  ...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day02/" title="Django学习-day02"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day02</div></div><div class="info-2"><div class="info-item-1">Django的框架设计模式 MVC 设计模式 MVC 代表 Model-View-Controller（模型-视图-控制器） 模式。 作用: 降低模块间的耦合度(解耦) MVC M 模型层(Model), 主要用于对数据库层的封装 V 视图层(View), 用于向用户展示结果 C 控制(Controller ，用于处理请求、获取数据、返回结果(重要)   MVC模式如图:     MTV 模式  MTV 代表 Model-Template-View（模型-模板-视图） 模式。这种模式用于应用程序的分层开发 作用:  降低模块间的耦合度(解耦)   MTV  M – 模型层(Model)  负责与数据库交互 T – 模板层(Template)  负责呈现内容到浏览器 V – 视图层(View)  是核心，负责接收请求、获取数据、返回结果   MTV模式如图:      模板 Templates 什么是模板  模板是可以根据字典数据动态变化的html网页 模板可以根据视图中传递的字典数据动态生成相应的HTML网页。   模板的配置  创建模板文件夹&lt;项目名&gt;/templ...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day04/" title="Django学习-day04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day04</div></div><div class="info-2"><div class="info-item-1">查询数据 数据库的查询需要使用管理器对象进行  通过 MyModel.objects 管理器方法调用查询接口   方法 说明    all() 查询全部记录,返回QuerySet查询对象   get() 查询符合条件的单一记录   filter() 查询符合条件的多条记录   exclude() 查询符合条件之外的全部记录   …       all()方法  方法: all() 用法: MyModel.objects.all() 作用: 查询MyModel实体中所有的数据 等同于 select * from tabel     返回值: QuerySet容器对象,内部存放 MyModel 实例 示例:  1234from bookstore.models import Bookbooks = Book.objects.all()for book in books:    print(&quot;书名&quot;, book.title, &#x27;出版社:&#x27;, book.pub)   在模型类中定义 def __str__(self):  方法可以自定义默认的字符串...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day06/" title="Django学习-day06"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day06</div></div><div class="info-2"><div class="info-item-1">缓存什么是缓存？缓存是一类可以更快的读取数据的介质统称，也指其它可以加快数据读取的存储方式。一般用来存储临时数据，常用介质的是读取速度很快的内存 为什么使用缓存？视图渲染有一定成本，对于低频变动的页面可以考虑使用缓存技术，减少实际渲染次数 案例分析 123456from django.shortcuts import renderdef index(request):    # 时间复杂度极高的渲染    book_list = Book.objects.all()  #-&gt; 此处假设耗时2s    return render(request, &#x27;index.html&#x27;, locals())  优化思想 12345678given a URL, try finding that page in the cacheif the page is in the cache:    return the cached pageelse:    generate the page    save the generated page in the cache (f...</div></div></div></a><a class="pagination-related" href="/2026/01/13/Django%E5%AD%A6%E4%B9%A0-day07/" title="Django学习-day07"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-13</div><div class="info-item-2">Django学习-day07</div></div><div class="info-2"><div class="info-item-1">文件上传 文件上传必须为POST提交方式  表单&lt;form&gt;中文件上传时必须有带有enctype=&quot;multipart/form-data&quot; 时才会包含文件内容数据。  表单中用&lt;input type=&quot;file&quot; name=&quot;xxx&quot;&gt;标签上传文件  名字xxx对应request.FILES[&#39;xxx&#39;] 对应的内存缓冲文件流对象。可通能过request.FILES[&#39;xxx&#39;] 返回的对象获取上传文件数据 file=request.FILES[&#39;xxx&#39;] file 绑定文件流对象，可以通过文件流对象的如下信息获取文件数据file.name 文件名file.file 文件的字节流数据   上传文件的表单书写方式 1234567891011121314&lt;!-- file: index/templates/index/upload.html --&gt;&lt;html&gt;&lt;head&gt;    &lt;meta charset=&...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xuru</div><div class="author-info-description">专注技术学习，分享学习之路，博客内容配套Gitee源码</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">静态文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8-app"><span class="toc-number">2.</span> <span class="toc-text">Django中的应用 - app</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8app"><span class="toc-number">2.1.</span> <span class="toc-text">创建应用app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.</span> <span class="toc-text">应用的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E8%B7%AF%E7%94%B1"><span class="toc-number">2.3.</span> <span class="toc-text">应用的分布式路由</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#include-%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.1.</span> <span class="toc-text">include 函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.4.</span> <span class="toc-text">应用的模板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%B1%82"><span class="toc-number">3.</span> <span class="toc-text">模型层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django%E4%B8%8B%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8-mysql-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">Django下配置使用 mysql 数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%EF%BC%88Models%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">模型（Models）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Django-%E7%9A%84-ORM%E6%A1%86%E6%9E%B6"><span class="toc-number">3.3.</span> <span class="toc-text">Django 的 ORM框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.4.</span> <span class="toc-text">模型示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%B1%BBModels-%E5%88%9B%E5%BB%BA"><span class="toc-number">3.5.</span> <span class="toc-text">模型类Models 创建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.1.</span> <span class="toc-text">字段类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E9%80%89%E9%A1%B9"><span class="toc-number">3.5.2.</span> <span class="toc-text">字段选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Meta%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">3.5.3.</span> <span class="toc-text">Meta内部类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">3.6.</span> <span class="toc-text">数据库迁移的错误处理方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">模型层的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.1.</span> <span class="toc-text">管理器对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.2.</span> <span class="toc-text">创建数据对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Django-shell-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">Django shell 的使用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By xuru</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

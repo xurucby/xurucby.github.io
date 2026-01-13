@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>xuru的技术学习博客 - 记录学习之路</title><meta name="author" content="xuru"><meta name="copyright" content="xuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="专注技术学习，分享学习之路，博客内容配套Gitee源码">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xuru的技术学习博客">
+<meta property="og:url" content="https://xurucby.github.io/index.html">
+<meta property="og:site_name" content="xuru的技术学习博客">
+<meta property="og:description" content="专注技术学习，分享学习之路，博客内容配套Gitee源码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xurucby.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="xuru">
+<meta property="article:tag" content="Python, Django, MySQL, 技术博客, Gitee源码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xurucby.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "xuru的技术学习博客",
+  "alternateName": [
+    "记录学习之路",
+    "xurucby.github.io"
+  ],
+  "url": "https://xurucby.github.io/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xurucby.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'xuru的技术学习博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xuru的技术学习博客</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">xuru的技术学习博客</h1><div id="site_social_icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">列表（list）相关方法说明一、查找相关方法   方法 说明    L.index(v [, begin[, end]]) 返回对应元素的索引下标，begin 为开始索引，end 为结束索引；当 value 不存在时触发 ValueError 错误   L.count(x) 用于统计某个元素在列表中出现的次数   L.pop([index]) 删除索引对应的元素，如果不加索引，默认删除最后一个元素，同时返回删除元素的引用关系   二、修改相关方法   方法 说明    L.insert(index, obj) 将某个元素插放到列表中指定的位置   L.extend(lst) 向列表追加另一个列表（将 lst 中的所有元素添加到原列表末尾）   L.remove(x) 从列表中删除第一次出现在列表中的指定值   L.clear() 清空列表，等同于 L[:] = []   L.sort(reverse=False) 将列表中的元素进行排序，默认按值从小到大的顺序排列（reverse&#x3D;True 时按从大到小排序）   L.reverse() 列表反转，改变原列表的先后顺序 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">1 程序结构1.1 模块 Module1.1.1 定义包含一系列数据、函数、类的文件，通常以.py结尾。 1.1.2 作用 让相关的数据、函数、类有逻辑地组织在一起，使逻辑结构更清晰。 有利于多人合作开发。  1.1.3 导入1.1.3.1 import 语法：12import 模块名import 模块名 as 别名 作用：将模块整体导入到当前模块中 使用：模块名.成员  1.1.3.2 from import 语法：123from 模块名 import 成员名from 模块名 import 成员名 as 别名from 模块名 import * 作用：将模块内的成员导入到当前模块作用域中 使用：直接使用成员名  导入示例代码123456789101112131415161718192021222324252627282930# module01.pydef func01():    print(&quot;module01 - func01执行喽&quot;)def func02():    print(&quot;module01 - func02执行喽&quot;)# 导入方...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">1. 概述1.1 面向过程 定义：分析出解决问题的步骤，然后逐步实现。 示例：婚礼筹办需依次完成请柬准备、宴席安排、仪式策划等步骤。   公式：程序 &#x3D; 算法 + 数据结构 优点：所有环节、细节可自主掌控。 缺点：需考虑全部细节，工作量大。  1.2 面向对象 定义：找出解决问题的相关对象，然后为其分配职责。 示例：婚礼筹办可委托摄影公司负责请柬、酒店负责宴席、婚庆公司负责仪式。   公式：程序 &#x3D; 对象 + 交互 优点： 思想层面：可模拟现实情景，更贴近人类思维，便于梳理和分析问题。 技术层面：高复用（封装重复代码）、高扩展（新增功能不修改旧代码）、高维护（代码逻辑清晰）。   缺点：学习曲线较陡峭。  2. 类和对象 抽象：从具体事物中抽离共性、本质，舍弃个别、非本质特征的过程。 示例：手机的共性数据（品牌、价格、颜色）和行为（通话）。   类：一个抽象的概念，对应生活中的“类别”。 对象：类的具体实例，即归属于某个类别的“个体”。 类是创建对象的“模板”。  2.1 语法2.1.1 定义类 代码：1234567class 类名:    &quot;&qu...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">2. Python简介2.1 计算机基础结构2.1.1 硬件1944年，美籍匈牙利数学家冯·诺依曼提出计算机基本结构，五大组成部分如下：  运算器：按照程序中的指令，对数据进行加工处理 控制器：根据程序需求，指挥计算机的各个部件协调工作 通常将运算器和控制器集成在中央处理器（CPU）中 存储器：保存各类程序的数据信息 内存RAM：容量小，速度快，临时存储数据 硬盘HDD：容量大，速度慢，永久存储数据   输入设备：外界向计算机传送信息的装置，例如：鼠标、键盘、扫描仪… 输出设备：计算机向外界传送信息的装置，例如：显示器、音响、打印机…  硬件工作流程：外存储器（如程序、原始数据）→输入设备→内存储器→运算器，控制器发出存取指令、运算命令，运算器处理后的数据回存内存储器，再通过输出设备输出信息。 2.1.2 软件软件层级结构：用户→应用软件→操作系统→计算机硬件  操作系统： 管理和控制计算机软件与硬件资源的程序 隔离不同硬件的差异，使软件开发简单化 常见系统：Windows、Linux、Unix   应用软件：为了某种特定的用途而被开发的软件 软件的组成：程序 + 文档 程序：是...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></span></div><div class="content">5. 正则表达式验证 定义  即文本的高级匹配模式，其本质是由一系列字符和特殊符号构成的字串，这个字串即正则表达式。  原理  通过普通字符和有特定含义的字符，来组成字符串，用以描述一定的字符串规则，比如：重复，位置等，来表达某类特定的字符串，进而匹配。  学习目标   掌握正则表达式常用元字符和基本规则 能够使用re模块操作正则表达式  5.1 元字符使用 普通字符  匹配规则：每个普通字符匹配其对应的字符 123e.g.In : re.findall(&#x27;ab&#x27;,&quot;abcdefabcd&quot;)Out: [&#x27;ab&#x27;, &#x27;ab&#x27;]   注意：正则表达式在python中也可以匹配中文   匹配单个字符  元字符：. 匹配规则：匹配除换行外的任意一个字符 1234e.g.In : re.findall(&#x27;张.丰&#x27;,&quot;张三丰,张四丰,张五丰&quot;)Out: [&#x27;张三丰&#x27;, &#x27;张四丰&#x27;, &#x27;张五丰&#x27;]   匹配字符集  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/git/" title="git">git</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:32:23.000Z" title="发表于 2026-01-13 11:32:23">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/git/">git</a></span></div><div class="content">2. GIT使用2.1 GIT概述 代码管理工具的用途  防止代码丢失，做备份 项目的版本管理和控制，可以通过设置节点进行跳转 建立各自的开发环境分支，互不影响，方便合并 在多终端开发时，方便代码的相互传输   GIT GIT是一个开源的分布式版本控制系统，用于高效的管理各种大小项目和文件。  GIT的特点  git是开源的，多在*nix下使用，可以管理各种文件  git是分布式的项目管理工具(SVN是集中式的)  git数据管理更多样化，分享速度快，数据安全  git 拥有更好的分支支持，方便多人协调     Linux下GIT安装    sudo apt  install  git  2.2 GIT使用  基本概念 工作区：项目所在操作目录，实际操作项目的区域 暂存区: 用于记录工作区的工作（修改）内容 仓库区: 用于备份工作区的内容 远程仓库: 远程主机上的GIT仓库     注意： 在本地仓库中，git总是希望工作区的内容与仓库区保持一致，而且只有仓库区的内容才能和其他远程仓库交互。  2.2.1 初始配置 配置命令： git config –global [选项] 配置...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/python%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="python网络编程">python网络编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:32:08.000Z" title="发表于 2026-01-13 11:32:08">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">1. 文件读写1.1 引入 什么是文件 文件是保存在持久化存储设备(硬盘、U盘、光盘..)上的一段数据，一个文本，一个py文件，一张图片，视频音频等这些都是文件。  文件分类  文本文件：打开后会自动解码为字符，如txt文件，word文件，py程序文件。 二进制文件：内部编码为二进制码，无法通过文字编码解析，如压缩包，音频，视频，图片等。   字节串类型  概念 ： 在python3中引入了字节串的概念，与str不同，字节串以字节序列值表达数据，更方便用来处理二进程数据。  字符串与字节串相互转化方法 12345- 普通的英文字符字符串常量可以在前面加b转换为字节串，例如：b&#x27;hello&#x27;- 变量或者包含非英文字符的字符串转换为字节串方法 ：str.encode()- 字节串转换为字符串方法 : bytes.decode() 注意：python字符串用来表达utf8字符，因为并不是所有二进制内容都可以转化为utf8字符，所以不是所有字节串都能转化为字符串，但是所有字符串都能转化成二进制，所以所有字符串都能转换为字节串。    1.2 文件读写操作使用程序操作文...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/MySQL/" title="MySQL">MySQL</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:31:57.000Z" title="发表于 2026-01-13 11:31:57">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/MySQL/">MySQL</a></span></div><div class="content">MySQL1. 数据库1.1概述 数据存储   人工管理阶段 缺点 ：  数据存储量有限，共享处理麻烦，操作容易混乱  文件管理阶段 （.txt  .doc  .xls） 优点 ：  数据可以长期保存,可以存储大量的数据,使用简单。 缺点 ：  数据一致性差,数据查找修改不方便,数据冗余度可能比较大。  数据库管理阶段 优点 ： 数据组织结构化降低了冗余度,提高了增删改查的效率,容易扩展,方便程序调用处理 缺点 ： 需要使用sql 或者其他特定的语句，相对比较专业    数据库应用领域 数据库的应用领域几乎涉及到了需要数据管理的方方面面，融机构、游戏网站、购物网站、论坛网站 … …都需要数据库进行数据存储管理。     基本概念 数据库 ： 按照数据一定结构，存储管理数据的仓库。数据库是在数据库管理系统管理和控制下，在一定介质上的数据集合。 数据库管理系统 ：管理数据库的软件，用于建立和维护数据库。    关系型数据库和非关系型数据库  关系型： 采用关系模型（二维表）来组织数据结构的数据库 ，如Oracle 、SQL_Server、 MySQL 非关系型： 不采用关系模型组织数...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/Linux/" title="Linux">Linux</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:31:50.000Z" title="发表于 2026-01-13 11:31:50">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">Linux 操作系统1. Linux操作系统认知1.1 操作系统（Operation System简称OS） 定义 操作系统是管理计算机硬件与软件资源的计算机程序，同时也是计算机系统的内核与基石。操作系统需要处理如管理与配置内存、决定系统资源供需的优先次序、控制输入设备与输出设备、操作网络与管理文件系统等基本事务。   操作系统功能   管理好硬件设备，为用户提供调用方法 是计算机中最重要的系统环境 管理各种其他的软件和程序的运行 对系统中文件进行管理    操作系统分类   桌面系统：Windows ，MacOS为主，图形界面良好用户群体大。 服务器系统：Linux，Unix为主，安全，稳定，费用低占有量大。windows占有率比较低。 嵌入式系统：Linux为主，主要用于小型智能设备，如智能手机，机器人等。     1.2 Linux系统介绍 Linux 诞生 1991 年 林纳斯（Linus） 就读于赫尔辛基大学期间，对 Unix 产生浓厚兴趣，林纳斯经常要用他的终端仿真器（Terminal Emulator） 去访问大学主机上的新闻组和邮件，为了方便读写和下载文件，他自己...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="内置对象">内置对象</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:27:54.000Z" title="发表于 2026-01-13 11:27:54">2026-01-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/JavaScript/">JavaScript</a></span></div><div class="content">Array 数组1. 创建  1var arr = []; 2. 特点 数组用于存储若干数据,自动为每位数据分配下标,从0开始 数组中的元素不限数据类型,长度可以动态调整 动态操作数组元素 ：根据元素下标读取或修改数组元素，arr[index]  3. 属性和方法 属性 : length 表示数组长度,可读可写 方法 : push(data) 在数组的末尾添加一个或多个元素,多个元素之间使用逗号隔开 返回添加之后的数组长度  pop() 移除末尾元素 返回被移除的元素  unshift(data) 在数组的头部添加一个或多个元素 返回添加之后的数组长度  shift() 移除数组的第一个元素 返回被移除的元素  splice(index,num) 从数组中添加&#x2F;删除项目 返回被删除的项目  toString()     将数组转换成字符串类型    返回字符串结果 + join(param)  将数组转换成字符串,可以指定元素之间的连接符,如果参数省略,默认按照逗号连接    返回字符串 + reverse() 反转数组,倒序重排 返回重排的数组,注意该方法直接修改原数...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xuru</div><div class="author-info-description">专注技术学习，分享学习之路，博客内容配套Gitee源码</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CSS/"><span class="card-category-list-name">CSS</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Django/"><span class="card-category-list-name">Django</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/HTML/"><span class="card-category-list-name">HTML</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaScript/"><span class="card-category-list-name">JavaScript</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Redis/"><span class="card-category-list-name">Redis</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Django/" style="font-size: 1.5em; color: #99a9bf">Django</a> <a href="/tags/HTML/" style="font-size: 1.1em; color: #999">HTML</a> <a href="/tags/python/" style="font-size: 1.4em; color: #99a5b6">python</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a> <a href="/tags/Redis/" style="font-size: 1.2em; color: #999da3">Redis</a> <a href="/tags/JavaScript/" style="font-size: 1.3em; color: #99a1ac">JavaScript</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/CSS/" style="font-size: 1.3em; color: #99a1ac">CSS</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">26</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-13T06:54:56.779Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By xuru</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

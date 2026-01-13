@@ -1,0 +1,1045 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux | xuru的技术学习博客</title><meta name="author" content="xuru"><meta name="copyright" content="xuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文详细讲解Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="https://xurucby.github.io/2026/01/13/Linux/index.html">
+<meta property="og:site_name" content="xuru的技术学习博客">
+<meta property="og:description" content="本文详细讲解Linux">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xurucby.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-01-13T03:31:50.000Z">
+<meta property="article:modified_time" content="2026-01-13T03:34:22.809Z">
+<meta property="article:author" content="xuru">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xurucby.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux",
+  "url": "https://xurucby.github.io/2026/01/13/Linux/",
+  "image": "https://xurucby.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-01-13T03:31:50.000Z",
+  "dateModified": "2026-01-13T03:34:22.809Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "xuru",
+      "url": "https://xurucby.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xurucby.github.io/2026/01/13/Linux/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">xuru的技术学习博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Linux</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-13T03:31:50.000Z" title="发表于 2026-01-13 11:31:50">2026-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-13T03:34:22.809Z" title="更新于 2026-01-13 11:34:22">2026-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Linux-操作系统"><a href="#Linux-操作系统" class="headerlink" title="Linux 操作系统"></a>Linux 操作系统</h1><h2 id="1-Linux操作系统认知"><a href="#1-Linux操作系统认知" class="headerlink" title="1. Linux操作系统认知"></a>1. Linux操作系统认知</h2><h3 id="1-1-操作系统（Operation-System简称OS）"><a href="#1-1-操作系统（Operation-System简称OS）" class="headerlink" title="1.1 操作系统（Operation System简称OS）"></a>1.1 操作系统（Operation System简称OS）</h3><ul>
+<li><p>定义</p>
+<p>操作系统是管理计算机硬件与软件资源的计算机程序，同时也是计算机系统的内核与基石。操作系统需要处理如管理与配置内存、决定系统资源供需的优先次序、控制输入设备与输出设备、操作网络与管理文件系统等基本事务。</p>
+<p><img src="/./img/OS.png"></p>
+</li>
+<li><p>操作系统功能</p>
+<blockquote>
+<ol>
+<li>管理好硬件设备，为用户提供调用方法</li>
+<li>是计算机中最重要的系统环境</li>
+<li>管理各种其他的软件和程序的运行</li>
+<li>对系统中文件进行管理</li>
+</ol>
+</blockquote>
+</li>
+<li><p>操作系统分类</p>
+<blockquote>
+<ol>
+<li>桌面系统：Windows ，MacOS为主，图形界面良好用户群体大。</li>
+<li>服务器系统：Linux，Unix为主，安全，稳定，费用低占有量大。windows占有率比较低。</li>
+<li>嵌入式系统：Linux为主，主要用于小型智能设备，如智能手机，机器人等。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="1-2-Linux系统介绍"><a href="#1-2-Linux系统介绍" class="headerlink" title="1.2 Linux系统介绍"></a>1.2 Linux系统介绍</h3><ul>
+<li><p>Linux 诞生</p>
+<p>1991 年 <strong>林纳斯（Linus）</strong> 就读于赫尔辛基大学期间，对 Unix 产生浓厚兴趣，林纳斯经常要用他的终端仿真器（Terminal Emulator） 去访问大学主机上的新闻组和邮件，为了方便读写和下载文件，他自己编写了磁盘驱动程序和文件系统，这些在后来成为了 Linux 第一个内核的雏形，当时，他年仅 21 岁！林纳斯利用C做工具，编写了 Linux 内核，后来经过全世界的网友的帮助，最终成为优秀的操作系统。</p>
+<p><img src="/img/linus.png" alt="Linus"></p>
+</li>
+<li><p>Linux系统特点</p>
+<ul>
+<li>Linux是一款开源免费的操作系统</li>
+<li>支持多种硬件平台</li>
+<li>支持多用户</li>
+<li>具有非常强大的网络功能</li>
+</ul>
+</li>
+<li><p>Linux 应用领域</p>
+<ul>
+<li><p>Linux 服务器 : 目前是服务器系统中最广泛一种。</p>
+<p><img src="/./img/server.jpg">  </p>
+</li>
+<li><p>桌面应用：新版本的Linux系统特别在桌面应用方面进行了改进，达到相当的水平。  </p>
+</li>
+<li><p>嵌入式系统：由于Linux系统开放源代码，可以方便修改，在嵌入式设备领域有很广阔的市场。</p>
+</li>
+</ul>
+</li>
+<li><p>Linux系统构成</p>
+<ul>
+<li><p>内核: Linux操作系统的核心代码，是Linux系统的心脏，提供了系统的核心功能，用来与硬件交互。</p>
+<p>Linux内核官网 : <a target="_blank" rel="noopener" href="http://www.kernel.org/">http://www.kernel.org</a></p>
+</li>
+<li><p>文件系统：通常指称管理磁盘数据的系统，可将数据以目录或文件的型式存储。每个文件系统都有自己的特殊格式与功能</p>
+</li>
+<li><p>命令解释器：它使得用户能够与操作系统进行交互，负责接收用户命令，然后调用操作系统功能。</p>
+</li>
+<li><p>应用软件：包含桌面系统和基础的软件操作工具等。</p>
+</li>
+</ul>
+<p><img src="/img/linux.jpg" alt="Linux"></p>
+</li>
+<li><p>Linux发行版本</p>
+<p>严格的来讲，Linux 只是一个系统内核，即计算机软件与硬件通讯之间的平台。一些组织或厂家将 Linux 内核与GNU软件（系统软件和工具）整合起来，并提供一些安装界面和系统设定与管理工具，这样就构成了一个发型套件，目前市面上较知名的发行版有：Ubuntu、RedHat、CentOS、Debian、Fedora、SuSE、OpenSUSE、Arch Linux、SolusOS 等。</p>
+<p>作为Linux发行版中的后起之秀，Ubuntu Linux在短短几年时间里便迅速成长为从Linux初学者到资深专家都十分青睐的发行版。由于Ubuntu Linux是开放源代码的自由软件，用户可以登录Ubuntu Linux的官方网址免费下载该软件的安装包。</p>
+<p>Ubuntu官网：<a target="_blank" rel="noopener" href="https://ubuntu.com/">https://ubuntu.com/</a></p>
+<p><img src="/./img/ubuntu.png" alt="ubuntu"></p>
+</li>
+</ul>
+<h3 id="1-3-文件系统"><a href="#1-3-文件系统" class="headerlink" title="1.3 文件系统"></a>1.3 文件系统</h3><ul>
+<li><p>定义</p>
+<p>文件系统是计算机操作系统的重要的组成部分，用于组织和管理计算机存储设备上的大量文件。</p>
+</li>
+<li><p>文件系统结构</p>
+<ul>
+<li>熟悉的windows文件系统，分不同盘符</li>
+</ul>
+<p><img src="/./img/win.png" alt="windows上文件系统"></p>
+<ul>
+<li>Linux的文件组织中没有盘符。将根（&#x2F;）作为整个文件系统的唯一起点，其他所有目录都从该点出发。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/./img/Linux_f.png" alt="Linux文件系统"></p>
+<p>​    </p>
+<p>  犹如一颗倒置的树，所有存储设备作为这颗树的一个子目录。</p>
+<p><img src="/img/linux_fs.jpg" alt="Linux"></p>
+<ul>
+<li>系统目录功能（了解）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">1. /bin目录</span><br><span class="line"></span><br><span class="line">  /bin目录包含了引导启动所需的命令或普通用户可能用的命令(可能在引导启动后)。这些命令都是二进制文件的可执行程序(bin是binary----二进制的简称)，多是系统中重要的系统文件。</span><br><span class="line"></span><br><span class="line">2. /sbin目录</span><br><span class="line"></span><br><span class="line">  /sbin目录类似/bin，也用于存储二进制文件。因为其中的大部分文件多是系统管理员使用的基本的系统程序，所以虽然普通用户必要且允许时可以使用，但一般不给普通用户使用。</span><br><span class="line"></span><br><span class="line">3. /etc目录</span><br><span class="line"></span><br><span class="line">  /etc目录存放着各种系统配置文件，其中包括了用户信息文件/etc/ passwd，系统初始化文件/etc/rc等。linux正是因为这些文件才得以正常地运行。</span><br><span class="line"></span><br><span class="line">4. /root目录</span><br><span class="line"></span><br><span class="line">  /root 目录是超级用户的目录。</span><br><span class="line"></span><br><span class="line">5. /lib目录</span><br><span class="line"></span><br><span class="line">  /lib目录是根文件系统上的程序所需的共享库，存放了根文件系统程序运行所需的共享文件。这些文件包含了可被许多程序共享的代码，以避免每个程序都包含有相同的子程序的副本，故可以使得可执行文件变得更小，节省空间。</span><br><span class="line"></span><br><span class="line">6. /dev目录</span><br><span class="line"></span><br><span class="line">  /dev目录存放了设备文件，即设备驱动程序，用户通过这些文件访问外部设备。比如，用户可以通过访问/dev/mouse来访问鼠标的输入，就像访问其他文件一样。</span><br><span class="line"></span><br><span class="line">7. /usr文件系统</span><br><span class="line"></span><br><span class="line">  /usr 是个很重要的目录，通常这一文件系统很大，因为所有程序安装在这里。本地安装的程序和其他东西在/usr/local 下，因为这样可以在升级新版系统或新发行版时无须重新安装全部程序。</span><br><span class="line"></span><br><span class="line">8. /var文件系统</span><br><span class="line"></span><br><span class="line">  /var 包含系统一般运行时要改变的数据。通常这些数据所在的目录的大小是要经常变化或扩充的。</span><br><span class="line"></span><br><span class="line">9. /home</span><br><span class="line"></span><br><span class="line">  /home 普通用户的默认目录，在该目录下，每个用户拥有一个以用户名命名的文件夹。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>绝对路径和相对路径表达<ul>
+<li>绝对路径：指文件在文件系统中以根目录为起始点的准确位置描述。例如“&#x2F;usr&#x2F;bin&#x2F;gnect”就是绝对路径。最要的标志就是以 ‘&#x2F;’ 作为路径描述的开头。</li>
+<li>相对路径：指相对于用户当前位置为起始点，对一个文件位置的逐层描述。例如，用户处在usr目录中时，只需要“games&#x2F;gnect”就可确定这个文件。在相对路径描述时  .  表示当前目录,   ..  表示上一级目录。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">随堂练习：</span><br><span class="line"></span><br><span class="line">1. 使用绝对路径表达 ： 主目录下month01下day03里有个homework.txt</span><br><span class="line">   </span><br><span class="line">   /home/tarena/month01/day03/homework.txt</span><br><span class="line"></span><br><span class="line">2. 假设在主目录“下载”这个文件夹中,用相对路径想找到：主目录下month01下day03里有个homework.txt</span><br><span class="line"></span><br><span class="line">   ../month01/day03/homework.txt</span><br><span class="line"></span><br><span class="line">如果就在day03中呢?</span><br><span class="line">   ./homework.txt --&gt; homework.txt</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-Linux常用命令"><a href="#2-Linux常用命令" class="headerlink" title="2. Linux常用命令"></a>2. Linux常用命令</h2><ul>
+<li>学习目的<ol>
+<li>Linux下有非常丰富的命令，可以用来完成大部分重要的Linux服务器操作维护功能，而且至今有些功能仍然通过命令操作比较方便。</li>
+<li>实际工作中，大量服务器维护工作都是工程师通过远程控制来完成的，并没有图形界面，这时维护工作都需要通过命令来完成。</li>
+<li>作为后端工程师，我们将来所写的代码都需要在服务器上运行，掌握基本的Linux 操作命令有助于我们将来对项目的部署和控制工作。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-1-终端与命令行"><a href="#2-1-终端与命令行" class="headerlink" title="2.1 终端与命令行"></a>2.1 终端与命令行</h3><ul>
+<li>终端 ： 使用命令对Linux系统进行操作的窗口</li>
+<li>命令行：书写Linux命令的提示行</li>
+</ul>
+<p><img src="/./img/zd.png"></p>
+<ul>
+<li>打开关闭终端快捷键<ul>
+<li>打开 ：通过ctrl+alt +t,shift+ctrl+n 都可以快速打开一个终端。</li>
+<li>关闭 ：ctrl-d</li>
+</ul>
+</li>
+<li>终端字体大小控制<ul>
+<li>放大 摁住  ctrl 和 + 号 （不要忘了+号要使用shift）</li>
+<li>缩小 摁住  ctrl 和 -  号</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-Linux常用命令"><a href="#2-2-Linux常用命令" class="headerlink" title="2.2 Linux常用命令"></a>2.2 Linux常用命令</h3><ul>
+<li><p>命令格式 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">command [-options] [parameter]</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">command：命令名称，一般为英文单词或单词的缩写</span><br><span class="line">[-options]：命令选项，辅助命令进行功能细化，也可以省略</span><br><span class="line">parameter：传给命令的参数，可以是0个或多个</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>常用快捷键</p>
+<ul>
+<li>清空屏幕 ： ctrl + l </li>
+<li>调取历史命令 ： 上下箭头</li>
+<li>复制 ctrl-shift-c</li>
+<li>粘贴 ctrl-shift-v</li>
+<li>强行终止 ctrl-c</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-1-帮助命令"><a href="#2-2-1-帮助命令" class="headerlink" title="2.2.1 帮助命令"></a>2.2.1 帮助命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>查阅 <code>command</code> 命令的使用手册,摁q退出</li>
+</ul>
+<h4 id="2-2-2-文件与目录管理命令"><a href="#2-2-2-文件与目录管理命令" class="headerlink" title="2.2.2 文件与目录管理命令"></a>2.2.2 文件与目录管理命令</h4><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">ls</td>
+<td align="left">查看当前文件夹下的内容</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">pwd</td>
+<td align="left">查看当前所在位置绝对路径</td>
+</tr>
+<tr>
+<td align="left">03</td>
+<td align="left">cd    [目录名]</td>
+<td align="left">切换文件夹</td>
+</tr>
+<tr>
+<td align="left">04</td>
+<td align="left">touch    [文件名]</td>
+<td align="left">如果文件不存在，新建文件</td>
+</tr>
+<tr>
+<td align="left">05</td>
+<td align="left">mkdir    [目录名]</td>
+<td align="left">创建目录</td>
+</tr>
+<tr>
+<td align="left">06</td>
+<td align="left">rm    [文件名]</td>
+<td align="left">删除指定的文件名</td>
+</tr>
+<tr>
+<td align="left">07</td>
+<td align="left">cp</td>
+<td align="left">复制一个文件</td>
+</tr>
+<tr>
+<td align="left">08</td>
+<td align="left">mv</td>
+<td align="left">移动一个文件</td>
+</tr>
+</tbody></table>
+<ul>
+<li>部分命令细节说明<ul>
+<li>ls ：  -l 展示详细信息，-a展示隐藏文件（Linux下 . 开头的为隐藏文件）。</li>
+<li>cd： 参数为绝对路径或者相对路径，直接cd表示回到主目录，cd  - 回到上一次工作目录 。</li>
+<li>touch:  可以同时跟多个参数表示创建多个文件。</li>
+<li>cp：如果拷贝的是一个目录需要使用 -r ，同时这个命令有另存为的作用</li>
+<li>mv:  即使移动目录页不需要选项，有重命名的作用。</li>
+<li>rm：删除表示直接删除，无法找回，如果删除目录需要加 -r选项</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>小技巧： 使用Tab键可以自动补全文件名，目录名等信息</p>
+</blockquote>
+<ul>
+<li><p>通配符</p>
+<ul>
+<li>作用：对一类文件名称的书写进行简化，例如file1.txt、file2.txt、file3.txt……，用户不必一一输入文件名，可以使用通配符完成。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>含义</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星号（*）</td>
+<td>匹配任意长度的字符串</td>
+<td>用file_*.txt，匹配file_wang.txt、file_Lee.txt、file_Liu.txt</td>
+</tr>
+<tr>
+<td>问号（?）</td>
+<td>匹配一个长度的字符</td>
+<td>用flie_?.txt，匹配file_1.txt、file_2.txt、file_3.txt</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="2-2-3-文件查看命令"><a href="#2-2-3-文件查看命令" class="headerlink" title="2.2.3 文件查看命令"></a>2.2.3 文件查看命令</h4><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">cat    [文件名]</td>
+<td align="left">查看文件内容、创建文件、文件合并、追加文件内容等功能</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">head   [文件名]</td>
+<td align="left">显示文件头部</td>
+</tr>
+<tr>
+<td align="left">03</td>
+<td align="left">tail   [文件名]</td>
+<td align="left">显示文件尾部</td>
+</tr>
+<tr>
+<td align="left">04</td>
+<td align="left">grep    [搜索文本]    [文件名]</td>
+<td align="left">搜索文本文件内容</td>
+</tr>
+<tr>
+<td align="left">05</td>
+<td align="left">find    [目录]   -name   [文件名]</td>
+<td align="left">在一个目录及其子目录下查找文件</td>
+</tr>
+<tr>
+<td align="left">06</td>
+<td align="left">wc    [文件名]</td>
+<td align="left">查看文件行数，单词数等信息</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>部分命令细节说明</p>
+<ul>
+<li>head，tail ： 选项-n，n表示一个数字，即可指定查看前n行或者后n行，不加选项默认查看10行。</li>
+<li>grep ： -n 用于显示行号，-i忽略大小写</li>
+<li>wc : -c 表示查看多少字符，-l查看多少行，-w 查看多少单词。如果不加选项则显示这三项。</li>
+<li>find：会从指定目录及其所有子目录中查询搜索文件。</li>
+</ul>
+</li>
+<li><p>管道</p>
+<p>管道可以把一系列命令连接起来，意味着第一个命令的输出将作为第二个命令的输入，通过管道传递给第二个命令，第二个命令的输出又将作为第三个命令的输入，以此类推。</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls | grep &#x27;hello&#x27;</span><br><span class="line">ls | wc -w</span><br></pre></td></tr></table></figure>
+
+<p>​	</p>
+<h4 id="2-2-4-压缩解压命令"><a href="#2-2-4-压缩解压命令" class="headerlink" title="2.2.4 压缩解压命令"></a>2.2.4 压缩解压命令</h4><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">zip ，unzip</td>
+<td align="left">将文件压缩为zip格式&#x2F;将zip格式文件解压</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">tar</td>
+<td align="left">对gz或者bz2格式进行压缩解压</td>
+</tr>
+</tbody></table>
+<ul>
+<li>部分命令细节说明<ul>
+<li><p>zip： 用于常与windows交互的情况，-r选项可以压缩目录 。</p>
+</li>
+<li><p>unzip  -d  可以选择解压位置</p>
+<ul>
+<li><blockquote>
+<p>zip    test.zip   filelist </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>unzip  test.zip</p>
+<p>unzip  -d  &#x2F;home&#x2F;tarena  test.zip</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>tar：-cjf 用于压缩bz2格式文件，-czf用于压缩gz格式文件，-xvf用于解压文件  -C用于指定解压位置。</p>
+<ul>
+<li><blockquote>
+<p>tar    -czf    file.tar.gz   file1  file2 </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>tar   -xvf    file.tar.gz    -C    ..</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">随堂练习：</span><br><span class="line">1. 将我们第一阶段老师给的代码压缩为zip格式</span><br><span class="line"></span><br><span class="line">    zip -r qtx.zip month01</span><br><span class="line"></span><br><span class="line">2. 将我们自己写的代码 压缩为bz2的格式</span><br><span class="line"></span><br><span class="line">    tar -cjf myself.tar.bz2 qtx</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-5-权限管理"><a href="#2-2-5-权限管理" class="headerlink" title="2.2.5 权限管理"></a>2.2.5 权限管理</h4><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">sudo</td>
+<td align="left">放在一个命令前，表示使用管理员权限执行</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">chmod</td>
+<td align="left">修改文件权限</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>部分命令细节说明</p>
+<ul>
+<li><p>sudo： 在打开终端第一次使用sudo时需要输入密码</p>
+</li>
+<li><p><code>chmod</code> 在设置权限时，可以字母也可以使用三个数字分别对应 <strong>拥有者</strong> ／ <strong>组</strong> 和 <strong>其他</strong> 用户的权限</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">直接修改文件|目录的 读|写|执行 权限，但是不能精确到 拥有者|组|其他</span><br><span class="line"><span class="built_in">chmod</span>  augo+/-/=rwx 文件名/目录名</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> a=rw-  hello.py</span><br><span class="line"><span class="built_in">chmod</span> o-w hello.py</span><br></pre></td></tr></table></figure>
+
+<p>￼</p>
+</li>
+</ul>
+<h4 id="2-2-6-显示展示命令"><a href="#2-2-6-显示展示命令" class="headerlink" title="2.2.6 显示展示命令"></a>2.2.6 显示展示命令</h4><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">echo</td>
+<td align="left">向终端打印内容</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">date</td>
+<td align="left">显示当前时间</td>
+</tr>
+<tr>
+<td align="left">03</td>
+<td align="left">df</td>
+<td align="left">显示磁盘剩余空间</td>
+</tr>
+<tr>
+<td align="left">04</td>
+<td align="left">whoami</td>
+<td align="left">显示当前用户</td>
+</tr>
+<tr>
+<td align="left">05</td>
+<td align="left">history  [num]</td>
+<td align="left">显示历史命令记录</td>
+</tr>
+<tr>
+<td align="left">06</td>
+<td align="left">tree</td>
+<td align="left">显示项目属性结构</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>部分命令细节说明</p>
+<ul>
+<li><p>echo ： -n 表示打印完成不换行</p>
+</li>
+<li><p>df:  -h 选项以更符合阅读习惯的方式显示磁盘使用量，-T显示文件系统类型，ext4的为磁盘</p>
+</li>
+<li><p>history :  history 默认显示500条历史记录，后面可以加具体数字表示显示多少条</p>
+</li>
+</ul>
+</li>
+<li><p>输出重定向</p>
+<table>
+<thead>
+<tr>
+<th>重定向符</th>
+<th>含义</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;   file</td>
+<td>将file文件重定向为输出源，新建模式</td>
+<td>echo “hello world”   &gt; out.txt，将执行结果，写到out.txt文件中，若有同名文件将被删除</td>
+</tr>
+<tr>
+<td>&gt;&gt;   file</td>
+<td>将file文件重定向为输出源，追加模式</td>
+<td>ls   &#x2F;usr   &gt;&gt; output.txt，将ls   &#x2F;usr的执行结果，追加到Lsoutput.txt文件已有内容后</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>​	</p>
+<h4 id="2-2-7-其他命令"><a href="#2-2-7-其他命令" class="headerlink" title="2.2.7 其他命令"></a>2.2.7 其他命令</h4><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">shutdown</td>
+<td align="left">关机或者重启,管理员权限执行</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">ln</td>
+<td align="left">创建链接</td>
+</tr>
+</tbody></table>
+<ul>
+<li>部分命令细节说明<ul>
+<li><p>shutdown：</p>
+<ul>
+<li><blockquote>
+<p>shutdown -r now 立即重启</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>shutdown now 立即关机</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>shutdown +10 10分钟后关机</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>shutdown -c  取消关机计划</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>ln : 一般使用  -s 选项 创建软链接，相当于快捷方式，如果跨目录创建要使用绝对路径。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s  /home/tarena/stage02/day02/hello.py  hello</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-Linux服务器环境"><a href="#3-Linux服务器环境" class="headerlink" title="3. Linux服务器环境"></a>3. Linux服务器环境</h2><h3 id="3-1-vi编辑器"><a href="#3-1-vi编辑器" class="headerlink" title="3.1 vi编辑器"></a>3.1 vi编辑器</h3><h4 id="3-1-1-什么是vi"><a href="#3-1-1-什么是vi" class="headerlink" title="3.1.1 什么是vi"></a>3.1.1 什么是vi</h4><p>vi是Linux操作系统中一个自带的编辑器。没有图形界面，只能编译文本内容，没有字体段落等设置，通过命令强大的命令完成一系列的编写工作。</p>
+<h4 id="3-1-2-学习目的"><a href="#3-1-2-学习目的" class="headerlink" title="3.1.2 学习目的"></a>3.1.2 学习目的</h4><ol>
+<li>在实际工作中，要对 服务器上的文件进行简单的修改，使用 <code>vi</code> 进行快速的编辑即可。</li>
+<li>对一些配置文件的修改，需要一定的权限，这时vi编辑器是最佳选择。</li>
+<li>vi 编辑器在系统管理、服务器管理编辑文件时，其功能不是图形界面的编辑器能比拟的。</li>
+</ol>
+<h4 id="3-1-3-操作使用"><a href="#3-1-3-操作使用" class="headerlink" title="3.1.3 操作使用"></a>3.1.3 操作使用</h4><ul>
+<li>打开和新建文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vi  [文件名]</span><br><span class="line"></span><br><span class="line">如果文件已经存在，会直接打开该文件</span><br><span class="line">如果文件不存在，会新建一个文件</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>工作模式</p>
+<ol>
+<li><strong>命令模式</strong><ul>
+<li><strong>打开文件首先进入命令模式</strong>，是使用 <code>vi</code> 的 <strong>入口</strong></li>
+<li>通过 <strong>命令</strong> 对文件进行常规的编辑操作，例如：<strong>定位</strong>、<strong>复制</strong>、<strong>粘贴</strong>、<strong>删除</strong>……</li>
+<li>在其他图形编辑器下，通过 <strong>快捷键</strong> 或者 <strong>鼠标</strong> 实现的操作，都在 <strong>命令模式</strong> 下实现</li>
+</ul>
+</li>
+<li><strong>末行模式</strong> —— 执行 <strong>保存</strong>、<strong>退出</strong> 等操作 <ul>
+<li>要退出 <code>vi</code> 返回到控制台，需要在末行模式下输入命令</li>
+<li><strong>末行模式</strong> 是 <code>vi</code> 的 <strong>出口</strong></li>
+</ul>
+</li>
+<li><strong>编辑模式</strong> —— 正常的编辑文字</li>
+</ol>
+</li>
+</ul>
+<p><img src="/./img/ms.png"></p>
+<ul>
+<li>进入编辑模式命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">英文</th>
+<th>功能</th>
+<th align="center">常用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i</td>
+<td align="center">insert</td>
+<td>在当前字符前插入文本</td>
+<td align="center">常用</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center"></td>
+<td>在当前行后面插入一空行</td>
+<td align="center">常用</td>
+</tr>
+</tbody></table>
+<ul>
+<li>底行模式常用命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">w</td>
+<td>保存</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td>退出，如果没有保存，不允许退出</td>
+</tr>
+<tr>
+<td align="center">q!</td>
+<td>强行退出，不保存退出</td>
+</tr>
+<tr>
+<td align="center">wq</td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td align="center">w!</td>
+<td>强制保存</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>光标移动命令</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">gg</td>
+<td>文件顶部</td>
+</tr>
+<tr>
+<td align="center">G</td>
+<td>文件末尾</td>
+</tr>
+<tr>
+<td align="center">:数字</td>
+<td>移动到 数字 对应行数</td>
+</tr>
+<tr>
+<td align="center">:set nu</td>
+<td>显示行号</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>:set   nu ! 可以取消行号显示</p>
+</blockquote>
+</li>
+<li><p>撤销和恢复撤销</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">u</td>
+<td>撤销上次命令</td>
+</tr>
+<tr>
+<td align="center">ctrl - r</td>
+<td>恢复撤销的命令</td>
+</tr>
+</tbody></table>
+<ul>
+<li>删除文本</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x</td>
+<td>删除光标所在字符，或者选中文字</td>
+</tr>
+<tr>
+<td align="center">cc</td>
+<td>删除光标所在行并进入插入模式</td>
+</tr>
+</tbody></table>
+<ul>
+<li>剪切、复制、粘贴</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">yy</td>
+<td>复制一行，可以 nyy 复制多行</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td>剪切光标所在行，可以 ndd 剪切多行</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td>粘贴</td>
+</tr>
+</tbody></table>
+<ul>
+<li>查找替换</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th>功能</th>
+<th>工作模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">r</td>
+<td>替换当前字符</td>
+<td>命令模式</td>
+</tr>
+<tr>
+<td align="center">R</td>
+<td>替换当前行光标后的字符</td>
+<td>替换模式</td>
+</tr>
+<tr>
+<td align="center">:%s&#x2F;str&#x2F;replace&#x2F;g</td>
+<td>替换str为replace</td>
+<td>底行模式</td>
+</tr>
+<tr>
+<td align="center">&#x2F;str</td>
+<td>查找 str</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>R</code> 命令可以进入 <strong>替换模式</strong>，替换完成后，按下 <code>ESC</code> 可以回到 <strong>命令模式</strong></p>
+<p>&#x2F; 查找到指定内容之后，使用 <code>n</code> 查找下一个出现的位置</p>
+</blockquote>
+<p><img src="/img/vi.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">随堂练习：</span><br><span class="line">使用vi编写一个python小函数,求<span class="number">20</span>以内奇数的累乘结果</span><br><span class="line"></span><br><span class="line">result = <span class="number">1</span> <span class="comment"># 获取最后的结果 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">21</span>):</span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">        result *= i </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;结果:&quot;</span>,result)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2-软件安装"><a href="#3-2-软件安装" class="headerlink" title="3.2 软件安装"></a>3.2 软件安装</h3><p>deb格式软件包是Linux中比较常见的。由于当时Linux系统中软件包存在复杂的依赖关系。因此，通常使用网络安装比较简单，不同的Linux操作系统会略有差异，但是大致原理是一样的。</p>
+<table>
+<thead>
+<tr>
+<th>作用</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>更新本地的资源列表</td>
+<td>apt   update</td>
+</tr>
+<tr>
+<td>更新软件</td>
+<td>apt   upgrade</td>
+</tr>
+<tr>
+<td>安装软件</td>
+<td>apt   install</td>
+</tr>
+<tr>
+<td>卸载软件</td>
+<td>apt   remove  –purge</td>
+</tr>
+<tr>
+<td>安装本地软件包</td>
+<td>dpkg   -i</td>
+</tr>
+<tr>
+<td>卸载软件</td>
+<td>dpkg  -P</td>
+</tr>
+<tr>
+<td>解决依赖关系</td>
+<td>apt  install  –fix-broken</td>
+</tr>
+</tbody></table>
+<ul>
+<li>注意事项 ： 安装软件包通常需要使用管理员权限。</li>
+<li>资源列表 ：&#x2F;etc&#x2F;apt&#x2F;sources.list</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install sl   # 安装</span><br><span class="line">sudo apt remove --purge  sl  # 彻底卸载</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3-pip3工具使用"><a href="#3-3-pip3工具使用" class="headerlink" title="3.3 pip3工具使用"></a>3.3 pip3工具使用</h3><h4 id="3-3-1-什么是pip3"><a href="#3-3-1-什么是pip3" class="headerlink" title="3.3.1 什么是pip3"></a>3.3.1 什么是pip3</h4><p>pip3是安装Python3标准线上库的重要工具。Python以第三方库众多，使用方便而著称，在进行Python项目开发时经常需要安装一些标准库模块之外的第三方库模块以帮助我们完成开发任务，这时都少不了这个工具。在python3.6以后的版本中安装python默认就会自带这个工具。</p>
+<h4 id="3-3-2-pip3常用命令"><a href="#3-3-2-pip3常用命令" class="headerlink" title="3.3.2 pip3常用命令"></a>3.3.2 pip3常用命令</h4><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">01</td>
+<td>pip3     list</td>
+<td>查看已安装的Python包</td>
+</tr>
+<tr>
+<td align="center">02</td>
+<td>pip3    install   [包名]</td>
+<td>安装软件包</td>
+</tr>
+<tr>
+<td align="center">03</td>
+<td>pip3    show    [包名]</td>
+<td>查看已安装包的信息</td>
+</tr>
+<tr>
+<td align="center">04</td>
+<td>pip3    uninstall   [包名]</td>
+<td>卸载已安装的python包</td>
+</tr>
+<tr>
+<td align="center">05</td>
+<td>pip3    install   –upgrade   [包名]</td>
+<td>更新包</td>
+</tr>
+<tr>
+<td align="center">06</td>
+<td>pip3    freeze &gt; requirements.txt</td>
+<td>导出环境需求文档</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">e.g. </span><br><span class="line">pip3 install pypinyin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pypinyin <span class="keyword">import</span> pinyin </span><br><span class="line">pinyin(<span class="string">&quot;不认识的字&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-4-ssh服务"><a href="#3-4-ssh服务" class="headerlink" title="3.4 ssh服务"></a>3.4 ssh服务</h3><p>ssh是一种安全协议，主要用于给远程登录会话数据进行加密，保证数据传输的安全。在数据传输方面有很多应用。之前说到，实际工作中经常需要远程访问服务器，ssh就是通用的远程访问服务器的方法。</p>
+<ul>
+<li><p>安装启动</p>
+<ul>
+<li><p>安装ssh服务 ： sudo apt install openssh-server</p>
+</li>
+<li><p>查看ssh服务状态 ： ps   -e | grep  “ssh”</p>
+<p><img src="/./img/ssh1.png"></p>
+</li>
+<li><p>启动和关闭 ：</p>
+<blockquote>
+<p>sudo service ssh start&#x2F;restart&#x2F;stop</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>常用命令</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01</td>
+<td align="left">ssh        用户名@ip</td>
+<td align="left">登录远程主机</td>
+</tr>
+<tr>
+<td align="left">02</td>
+<td align="left">scp       用户名@ip:文件名绝对路径      目标位置</td>
+<td align="left">远程复制文件</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>ssh登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh  levi@192.168.100.5    # 登录</span><br><span class="line">exit                      # 退出</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="/./img/ssh2.png"></p>
+<ol start="2">
+<li><p>scp拷贝</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意：`:` 后面的路径写绝对路径</span></span><br><span class="line">scp  demo.py levi@192.168.100.5:/home/tarena</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">把远程主目录下demo.py文件 复制到本地当前目录下</span></span><br><span class="line">scp  levi@192.168.100.5:/home/tarena/demo.py  .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">加上 -r 选项可以传送文件夹</span></span><br><span class="line">scp -r demo levi@192.168.100.5:/home/tarena/</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="3-5-终端启动Python服务"><a href="#3-5-终端启动Python服务" class="headerlink" title="3.5 终端启动Python服务"></a>3.5 终端启动Python服务</h3><p>在服务器中并没有pycharm这些集成编译工具，所有当我们最后将程序部署在服务器上执行时，往往需要通过终端运行python程序。</p>
+<ul>
+<li>方法一： 直接在终端python3后加要执行的程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3  hello.py</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>方法二：通过修改程序执行权限执行</li>
+</ul>
+<ol>
+<li>编写python程序在第一行增加解释器声明</li>
+</ol>
+<p><img src="/./img/1.png"></p>
+<ol start="2">
+<li><p>修改文件的权限，使其有可执行权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x demo.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过指定文件位置执行代码</p>
+</li>
+</ol>
+<p><img src="/./img/3.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xurucby.github.io">xuru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xurucby.github.io/2026/01/13/Linux/">https://xurucby.github.io/2026/01/13/Linux/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xurucby.github.io" target="_blank">xuru的技术学习博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/13/MySQL/" title="MySQL"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">MySQL</div></div><div class="info-2"><div class="info-item-1">MySQL1. 数据库1.1概述 数据存储   人工管理阶段 缺点 ：  数据存储量有限，共享处理麻烦，操作容易混乱  文件管理阶段 （.txt  .doc  .xls） 优点 ：  数据可以长期保存,可以存储大量的数据,使用简单。 缺点 ：  数据一致性差,数据查找修改不方便,数据冗余度可能比较大。  数据库管理阶段 优点 ： 数据组织结构化降低了冗余度,提高了增删改查的效率,容易扩展,方便程序调用处理 缺点 ： 需要使用sql 或者其他特定的语句，相对比较专业    数据库应用领域 数据库的应用领域几乎涉及到了需要数据管理的方方面面，融机构、游戏网站、购物网站、论坛网站 … …都需要数据库进行数据存储管理。     基本概念 数据库 ： 按照数据一定结构，存储管理数据的仓库。数据库是在数据库管理系统管理和控制下，在一定介质上的数据集合。 数据库管理系统 ：管理数据库的软件，用于建立和维护数据库。    关系型数据库和非关系型数据库  关系型： 采用关系模型（二维表）来组织数据结构的数据库 ，如Oracle 、SQL_Server、 MySQL 非关系型： 不采用关系模型组织数...</div></div></div></a><a class="pagination-related" href="/2026/01/13/%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="内置对象"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">内置对象</div></div><div class="info-2"><div class="info-item-1">Array 数组1. 创建  1var arr = []; 2. 特点 数组用于存储若干数据,自动为每位数据分配下标,从0开始 数组中的元素不限数据类型,长度可以动态调整 动态操作数组元素 ：根据元素下标读取或修改数组元素，arr[index]  3. 属性和方法 属性 : length 表示数组长度,可读可写 方法 : push(data) 在数组的末尾添加一个或多个元素,多个元素之间使用逗号隔开 返回添加之后的数组长度  pop() 移除末尾元素 返回被移除的元素  unshift(data) 在数组的头部添加一个或多个元素 返回添加之后的数组长度  shift() 移除数组的第一个元素 返回被移除的元素  splice(index,num) 从数组中添加&#x2F;删除项目 返回被删除的项目  toString()     将数组转换成字符串类型    返回字符串结果 + join(param)  将数组转换成字符串,可以指定元素之间的连接符,如果参数省略,默认按照逗号连接    返回字符串 + reverse() 反转数组,倒序重排 返回重排的数组,注意该方法直接修改原数...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">xuru</div><div class="author-info-description">专注技术学习，分享学习之路，博客内容配套Gitee源码</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://gitee.com/xu-ru1" target="_blank" title="gitee"><i class="Gitee"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">Linux 操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%A4%E7%9F%A5"><span class="toc-number">1.1.</span> <span class="toc-text">1. Linux操作系统认知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88Operation-System%E7%AE%80%E7%A7%B0OS%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 操作系统（Operation System简称OS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Linux%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 Linux系统介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 文件系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">2. Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%BB%88%E7%AB%AF%E4%B8%8E%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 终端与命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">2.2.1 帮助命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.2.2 文件与目录管理命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">2.2.3 文件查看命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-4-%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">2.2.4 压缩解压命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-5-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">2.2.5 权限管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-6-%E6%98%BE%E7%A4%BA%E5%B1%95%E7%A4%BA%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">2.2.6 显示展示命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-7-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">2.2.7 其他命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">3. Linux服务器环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-vi%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 vi编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E4%BB%80%E4%B9%88%E6%98%AFvi"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">3.1.1 什么是vi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E7%9A%84"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">3.1.2 学习目的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-%E6%93%8D%E4%BD%9C%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">3.1.3 操作使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-pip3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 pip3工具使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E4%BB%80%E4%B9%88%E6%98%AFpip3"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">3.3.1 什么是pip3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-pip3%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">3.3.2 pip3常用命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-ssh%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 ssh服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E7%BB%88%E7%AB%AF%E5%90%AF%E5%8A%A8Python%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.5 终端启动Python服务</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E5%AE%B9%E5%99%A8%E5%87%BD%E6%95%B0/" title="python容器函数">python容器函数</a><time datetime="2026-01-13T03:47:38.000Z" title="发表于 2026-01-13 11:47:38">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%AB%98%E7%BA%A7/" title="python高级">python高级</a><time datetime="2026-01-13T03:47:16.000Z" title="发表于 2026-01-13 11:47:16">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="python面向对象">python面向对象</a><time datetime="2026-01-13T03:47:11.000Z" title="发表于 2026-01-13 11:47:11">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/python%E6%A0%B8%E5%BF%83/" title="python核心">python核心</a><time datetime="2026-01-13T03:47:03.000Z" title="发表于 2026-01-13 11:47:03">2026-01-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><time datetime="2026-01-13T03:37:34.000Z" title="发表于 2026-01-13 11:37:34">2026-01-13</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By xuru</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
